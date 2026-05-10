@@ -13,11 +13,11 @@
 body {
   background-color: var(--color-nothing-bg);
   color: var(--color-nothing-text);
-  cursor: crosshair;
+  cursor: none !important;
 }
 
 a, button {
-  cursor: crosshair;
+  cursor: none !important;
 }
 
 /* Glitch effect on hover */

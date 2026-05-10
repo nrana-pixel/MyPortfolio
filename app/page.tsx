@@ -18,6 +18,8 @@ import {
 export default function PortfolioHome() {
   const [mounted, setMounted] = useState(false);
   const [time, setTime] = useState("");
+  const [isBooting, setIsBooting] = useState(true);
+  const [bootText, setBootText] = useState<string[]>([]);
 
   useEffect(() => {
     setMounted(true);
@@ -27,8 +29,48 @@ export default function PortfolioHome() {
     };
     updateTime();
     const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
+    
+    // Boot Sequence
+    const sequence = [
+      "INITIALIZING KERNEL...",
+      "LOADING USER.APP...",
+      "MOUNTING DATA VOLUMES...",
+      "STARTING NETWORK INTERFACES... OK",
+      "CONNECTING TO CLOUDFLARE EDGE... OK",
+      "FETCHING USER PROFILE: NISHIT_RANA... OK",
+      "DECRYPTING PORTFOLIO DATA... SUCCESS",
+      "LAUNCHING SYSTEM UI..."
+    ];
+    
+    let i = 0;
+    const bootInterval = setInterval(() => {
+      setBootText(prev => [...prev, sequence[i]]);
+      i++;
+      if (i >= sequence.length) {
+        clearInterval(bootInterval);
+        setTimeout(() => setIsBooting(false), 600);
+      }
+    }, 120);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(bootInterval);
+    };
   }, []);
+
+  if (isBooting) {
+    return (
+      <main className="fixed inset-0 bg-[#0A0A0A] z-[99999] flex flex-col justify-end p-6 md:p-12 font-mono text-xs md:text-sm text-[#FF0000] uppercase pt-24 overflow-hidden">
+        <div className="noise-overlay" />
+        <div className="space-y-4 mb-24 max-w-2xl">
+          {bootText.map((text, idx) => (
+            <div key={idx}>{`> ${text}`}</div>
+          ))}
+          <div className="animate-pulse">{`> _`}</div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="relative w-full overflow-hidden text-[#F5F5F5]">
@@ -44,7 +86,7 @@ export default function PortfolioHome() {
               <span className="text-[#FF0000]">[ SOFTWARE ENGINEER ]</span>
               {mounted && (
                 <span className="text-[#F5F5F5]/60 animate-pulse">
-                  SYSTEM.ONLINE — LUDHIANA, IN — {time}
+                  SYSTEM.ONLINE — INDIA — {time}
                 </span>
               )}
             </div>
