@@ -237,7 +237,7 @@ export default function PortfolioHome() {
                   ]
                }
             ].map((proj, i) => (
-               <div key={i} className="p-8 md:p-12 hover:bg-white/5 transition-colors cursor-crosshair group relative">
+               <div key={i} className="p-8 md:p-12 bg-[#0A0A0A] hover:bg-[#111111] transition-all duration-300 ease-out hover:scale-[1.015] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_rgba(255,0,0,0.3)] hover:z-10 cursor-crosshair group relative">
                   <div className="absolute right-8 top-8 opacity-0 group-hover:opacity-100 transition-opacity">
                      {proj.link ? <a href={proj.link} className="hover:text-[#FF0000]"><Github className="w-6 h-6" /></a> : <Globe className="w-6 h-6 text-white/20" />}
                   </div>
