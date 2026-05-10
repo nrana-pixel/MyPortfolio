@@ -314,7 +314,12 @@ export default function PortfolioHome() {
                   ]
                }
             ].map((proj, i) => (
-               <div key={i} className="p-8 md:p-12 bg-[#0A0A0A] hover:bg-[#111111] transition-all duration-300 ease-out hover:scale-[1.015] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_rgba(255,0,0,0.3)] hover:z-10 cursor-crosshair group relative">
+               <motion.div 
+                  key={i} 
+                  whileHover={{ scale: 1.015, y: -4, boxShadow: "6px 6px 0px 0px rgba(255, 0, 0, 0.4)" }}
+                  transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
+                  className="p-8 md:p-12 bg-[#0A0A0A] transition-colors cursor-crosshair group relative hover:z-10"
+               >
                   <div className="absolute right-8 top-8 opacity-0 group-hover:opacity-100 transition-opacity">
                      {proj.link ? <a href={proj.link} className="hover:text-[#FF0000]"><Github className="w-6 h-6" /></a> : <Globe className="w-6 h-6 text-white/20" />}
                   </div>
@@ -329,7 +334,7 @@ export default function PortfolioHome() {
                         <li key={j}>{pt}</li>
                      ))}
                   </ul>
-               </div>
+               </motion.div>
             ))}
          </div>
       </motion.section>
