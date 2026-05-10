@@ -17,13 +17,22 @@ import {
 
 export default function PortfolioHome() {
   const [mounted, setMounted] = useState(false);
+  const [time, setTime] = useState("");
 
   useEffect(() => {
     setMounted(true);
+    const updateTime = () => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString('en-US', { hour12: false, timeZone: 'Asia/Kolkata' }));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <main className="relative w-full overflow-hidden text-[#F5F5F5]">
+      <div className="noise-overlay" />
       {/* Dot Matrix BG */}
       <div className="fixed inset-0 bg-dot-grid opacity-30 -z-10" />
       
@@ -31,8 +40,13 @@ export default function PortfolioHome() {
       <section className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-12 border-b-[1px] border-white/20" id="hero">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-full items-center">
           <div className="md:col-span-8 z-10">
-            <div className="font-mono text-xs uppercase tracking-[0.3em] text-[#FF0000] mb-8">
-              [ SOFTWARE ENGINEER ]
+            <div className="font-mono text-xs uppercase tracking-[0.3em] flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-8">
+              <span className="text-[#FF0000]">[ SOFTWARE ENGINEER ]</span>
+              {mounted && (
+                <span className="text-[#F5F5F5]/60 animate-pulse">
+                  SYSTEM.ONLINE — LUDHIANA, IN — {time}
+                </span>
+              )}
             </div>
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
@@ -111,7 +125,14 @@ export default function PortfolioHome() {
       </section>
 
       {/* EXPERIENCE */}
-      <section className="min-h-[50vh] border-b-[1px] border-white/20" id="experience">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="min-h-[50vh] border-b-[1px] border-white/20" 
+        id="experience"
+      >
          <div className="grid grid-cols-1 md:grid-cols-12 bg-[#0A0A0A]">
             <div className="md:col-span-4 border-b-[1px] md:border-b-0 md:border-r-[1px] border-white/20 p-6 md:p-12 lg:p-24 relative overflow-hidden flex flex-col justify-center">
                  {/* Pattern overlay */}
@@ -143,10 +164,17 @@ export default function PortfolioHome() {
                </div>
             </div>
          </div>
-      </section>
+      </motion.section>
 
       {/* SKILLS */}
-      <section className="border-b-[1px] border-white/20" id="skills">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="border-b-[1px] border-white/20" 
+        id="skills"
+      >
          <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[50vh]">
             <div className="lg:col-span-4 border-b-[1px] lg:border-b-0 lg:border-r-[1px] border-white/20 p-6 md:p-12 lg:p-24 flex flex-col justify-center bg-[#F5F5F5] text-[#0A0A0A]">
                <div className="font-mono text-xs uppercase tracking-[0.3em] text-[#FF0000] mb-12">
@@ -185,10 +213,17 @@ export default function PortfolioHome() {
                </div>
             </div>
          </div>
-      </section>
+      </motion.section>
 
       {/* PROJECTS */}
-      <section className="border-b-[1px] border-white/20 bg-[#0A0A0A]" id="projects">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="border-b-[1px] border-white/20 bg-[#0A0A0A]" 
+        id="projects"
+      >
          <div className="p-6 md:p-12 lg:p-24 border-b border-white/20">
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
                <div>
@@ -255,10 +290,17 @@ export default function PortfolioHome() {
                </div>
             ))}
          </div>
-      </section>
+      </motion.section>
 
       {/* EDUCATION & ACHIEVEMENTS */}
-      <section className="min-h-[50vh] border-b-[1px] border-white/20 flex flex-col md:flex-row" id="education">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="min-h-[50vh] border-b-[1px] border-white/20 flex flex-col md:flex-row" 
+        id="education"
+      >
          <div className="w-full md:w-1/2 border-b-[1px] md:border-b-0 md:border-r-[1px] border-white/20 p-8 md:p-16 lg:p-24 bg-[#0A0A0A]">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-[#FF0000] mb-12">
                [ 04 / EDUCATION ]
@@ -286,10 +328,17 @@ export default function PortfolioHome() {
                <li><span className="text-white">Third Prize</span> – Web Surfing, Tech Disha 2024 (Arya College, Ludhiana)</li>
             </ul>
          </div>
-      </section>
+      </motion.section>
 
       {/* CTA */}
-      <section className="py-24 md:py-32 flex justify-center items-center flex-col px-6 border-b-[1px] border-white/20 relative" id="contact">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="py-24 md:py-32 flex justify-center items-center flex-col px-6 border-b-[1px] border-white/20 relative" 
+        id="contact"
+      >
          <div className="font-mono text-xs uppercase tracking-[0.3em] text-[#FF0000] mb-8 z-10">
             [ / END ]
          </div>
@@ -310,7 +359,7 @@ export default function PortfolioHome() {
                RESUME
             </a>
          </div>
-      </section>
+      </motion.section>
     </main>
   );
 }
