@@ -102,7 +102,7 @@ export default function PortfolioHome() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="font-mono text-sm mt-8 max-w-md uppercase tracking-wider leading-relaxed border-l border-white/40 pl-6 mb-8"
+              className="font-mono text-base md:text-lg mt-8 max-w-lg uppercase tracking-wider leading-relaxed border-l border-white/40 pl-6 mb-8"
             >
               Building scalable backend systems, edge <br/>
               platforms, and AI-driven workflows.
@@ -113,11 +113,11 @@ export default function PortfolioHome() {
               transition={{ duration: 1, delay: 0.7 }}
               className="flex flex-col sm:flex-row items-start sm:items-center gap-6"
             >
-              <a href="mailto:nrana4148@gmail.com" className="font-mono text-xs uppercase tracking-widest text-[#F5F5F5] hover:text-[#FF0000] transition-colors draw-underline">
+              <a href="mailto:nrana4148@gmail.com" className="font-mono text-sm uppercase tracking-widest text-[#F5F5F5] hover:text-[#FF0000] transition-colors draw-underline">
                 nrana4148@gmail.com
               </a>
               <span className="text-white/20 hidden sm:block">/</span>
-              <a href="/resume.pdf" download="Nishit_Rana_Resume.pdf" className="font-mono text-xs uppercase tracking-widest text-[#F5F5F5] hover:text-[#FF0000] transition-colors flex items-center gap-2 group">
+              <a href="/resume.pdf" download="Nishit_Rana_Resume.pdf" className="font-mono text-sm uppercase tracking-widest text-[#F5F5F5] hover:text-[#FF0000] transition-colors flex items-center gap-2 group">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="group-hover:translate-y-0.5 transition-transform">
                   <path d="M21 15v4h-18v-4M7 10l5 5 5-5M12 15V3" />
                 </svg>
@@ -183,7 +183,7 @@ export default function PortfolioHome() {
                    <div className="font-mono text-xs uppercase tracking-[0.3em] text-[#FF0000] mb-12">
                       [ 01 / EXPERIENCE ]
                    </div>
-                   <h2 className="font-display text-5xl md:text-6xl uppercase tracking-tight text-[#F5F5F5] break-words">
+                   <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tight text-[#F5F5F5] break-words">
                      Professional <br/> Background.
                    </h2>
                  </div>
@@ -198,7 +198,7 @@ export default function PortfolioHome() {
                           <p className="font-mono text-xs text-[#F5F5F5]/60 mt-2 tracking-widest">AUG 2024 — JAN 2025</p>
                        </div>
                     </div>
-                    <ul className="font-mono text-sm leading-relaxed tracking-wide space-y-4 text-[#F5F5F5]/80 list-disc pl-4 marker:text-[#FF0000]">
+                    <ul className="font-mono text-base leading-relaxed tracking-wide space-y-4 text-[#F5F5F5]/80 list-disc pl-6 marker:text-[#FF0000]">
                        <li>Built scalable backend systems in Node.js and Python; developed and deployed REST APIs on production Linux servers with Nginx</li>
                        <li>Worked with n8n automation, Docker, Kubernetes, MongoDB, and RAG pipelines in a DevOps-oriented environment</li>
                     </ul>
@@ -222,7 +222,7 @@ export default function PortfolioHome() {
                <div className="font-mono text-xs uppercase tracking-[0.3em] text-[#FF0000] mb-12">
                   [ 02 / CAPABILITIES ]
                </div>
-               <h2 className="font-display text-5xl md:text-6xl uppercase tracking-tight break-words">
+               <h2 className="font-display text-5xl md:text-7xl uppercase tracking-tight break-words">
                  Technical <br/> Arsenal.
                </h2>
             </div>
@@ -246,7 +246,7 @@ export default function PortfolioHome() {
                               </div>
                               <h3 className="font-display text-2xl uppercase tracking-tight">{skill.name}</h3>
                            </div>
-                           <p className="font-mono text-sm leading-relaxed text-[#F5F5F5]/70">
+                           <p className="font-mono text-base leading-relaxed text-[#F5F5F5]/70">
                               {skill.items}
                            </p>
                         </div>
@@ -329,7 +329,7 @@ export default function PortfolioHome() {
                   <div className="font-mono text-[10px] text-[#F5F5F5]/50 tracking-widest mb-8 border border-white/20 w-fit px-3 py-1">
                      {proj.tech}
                   </div>
-                  <ul className="font-mono text-sm leading-relaxed tracking-wide space-y-3 text-[#F5F5F5]/80 list-disc pl-4 marker:text-white/20 group-hover:marker:text-[#FF0000] transition-colors max-w-4xl">
+                  <ul className="font-mono text-base leading-relaxed tracking-wide space-y-3 text-[#F5F5F5]/80 list-disc pl-6 marker:text-white/20 group-hover:marker:text-[#FF0000] transition-colors max-w-4xl">
                      {proj.points.map((pt, j) => (
                         <li key={j}>{pt}</li>
                      ))}
@@ -356,12 +356,12 @@ export default function PortfolioHome() {
                <div>
                   <h3 className="font-display text-2xl uppercase tracking-tight">Bachelor of Computer Application</h3>
                   <p className="font-mono text-xs text-[#F5F5F5]/60 mt-2 tracking-widest">2022 — 2025</p>
-                  <p className="font-mono text-sm mt-4 text-[#F5F5F5]/80 mt-2">Arya College Ludhiana, Punjab</p>
+                  <p className="font-mono text-base mt-4 text-[#F5F5F5]/80 mt-2">Arya College Ludhiana, Punjab</p>
                </div>
                <div>
                   <h3 className="font-display text-2xl uppercase tracking-tight">Class 10th and 12th</h3>
                   <p className="font-mono text-xs text-[#F5F5F5]/60 mt-2 tracking-widest">2020 — 2022</p>
-                  <p className="font-mono text-sm mt-4 text-[#F5F5F5]/80 mt-2">Amrit Indo Canadian Academy Ludhiana, Punjab</p>
+                  <p className="font-mono text-base mt-4 text-[#F5F5F5]/80 mt-2">Amrit Indo Canadian Academy Ludhiana, Punjab</p>
                </div>
             </div>
          </div>
@@ -369,7 +369,7 @@ export default function PortfolioHome() {
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-[#FF0000] mb-12">
                [ 05 / ACHIEVEMENTS ]
             </div>
-            <ul className="font-mono text-sm leading-relaxed tracking-wide space-y-6 text-[#F5F5F5]/80 list-disc pl-4 marker:text-[#FF0000]">
+            <ul className="font-mono text-base leading-relaxed tracking-wide space-y-6 text-[#F5F5F5]/80 list-disc pl-6 marker:text-[#FF0000]">
                <li><span className="text-white">First Prize</span> – Swift Surfer, Technothan 2022 (PG Dept. of CS, Guru Nanak Khalsa College)</li>
                <li><span className="text-white">Third Prize</span> – Web Surfing, Tech Disha 2023 (Arya College, Ludhiana)</li>
                <li><span className="text-white">Third Prize</span> – Web Surfing, Tech Disha 2024 (Arya College, Ludhiana)</li>
@@ -392,10 +392,10 @@ export default function PortfolioHome() {
          <h2 className="font-display text-5xl md:text-7xl lg:text-[7rem] tracking-tighter uppercase text-center max-w-4xl leading-[0.9] z-10 glitch-hover">
             LET&apos;S BUILD <br/> SOMETHING
          </h2>
-         <p className="font-mono text-sm md:text-base mt-8 text-center max-w-xl opacity-80 uppercase z-10">
+         <p className="font-mono text-base md:text-lg mt-8 text-center max-w-2xl opacity-80 uppercase z-10">
             Available for new opportunities. Email me directly to discuss backend infrastructure, AI agentic pipelines, or anything else.
          </p>
-         <div className="mt-16 flex flex-col sm:flex-row gap-6 z-10">
+         <div className="mt-16 flex flex-col sm:flex-row flex-wrap justify-center gap-6 z-10">
             <a href="mailto:nrana4148@gmail.com" className="border-[1px] border-[#F5F5F5] bg-[#F5F5F5] text-[#0A0A0A] px-12 py-4 font-bold tracking-widest uppercase hover:bg-[#FF0000] hover:text-[#F5F5F5] hover:border-[#FF0000] transition-all cursor-crosshair text-center">
                GET IN TOUCH
             </a>
@@ -403,7 +403,10 @@ export default function PortfolioHome() {
                LINKEDIN
             </a>
             <a href="/resume.pdf" download="Nishit_Rana_Resume.pdf" className="border-[1px] border-[#F5F5F5] px-12 py-4 font-bold tracking-widest uppercase hover:bg-[#F5F5F5] hover:text-[#0A0A0A] transition-all cursor-crosshair text-center">
-               RESUME
+               DOWNLOAD RESUME
+            </a>
+            <a href="https://github.com/nrana-pixel" target="_blank" rel="noopener noreferrer" className="border-[1px] border-[#F5F5F5] px-12 py-4 font-bold tracking-widest uppercase hover:bg-[#F5F5F5] hover:text-[#0A0A0A] transition-all cursor-crosshair text-center">
+               GITHUB
             </a>
          </div>
       </motion.section>
