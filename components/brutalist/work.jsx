@@ -273,7 +273,7 @@ export function CTA() {
           <a ref={liRef} href="https://linkedin.com/in/NishitRana" target="_blank" rel="noopener noreferrer" data-cursor="link" className="cta-btn">
             <span>LinkedIn ↗</span>
           </a>
-          <a ref={resRef} href="/resume.pdf" download="Nishit_Rana_Resume.pdf" data-cursor="link" className="cta-btn">
+          <a ref={resRef} href="/resume.pdf" download="resume.pdf" data-cursor="link" className="cta-btn">
             <span>↓ Résumé</span>
           </a>
         </div>

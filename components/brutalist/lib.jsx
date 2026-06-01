@@ -12,7 +12,7 @@
    - lerp / clamp / mapRange
 ============================================================ */
 
-import { useEffect, useLayoutEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 
 export const EASE = {
   out:    [0.22, 1, 0.36, 1],     // signature

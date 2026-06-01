@@ -575,6 +575,22 @@ export function EdgeGlobe({ className = '', onStats }) {
     };
     raf = requestAnimationFrame(tick);
 
+    // Pause the render loop when the tab is hidden or the globe is scrolled
+    // off-screen — this is the heaviest loop on the page.
+    let visible = !document.hidden, onscreen = true;
+    const setRunning = () => {
+      const shouldRun = visible && onscreen;
+      if (shouldRun && !raf) raf = requestAnimationFrame(tick);
+      else if (!shouldRun && raf) { cancelAnimationFrame(raf); raf = 0; }
+    };
+    const onVis = () => { visible = !document.hidden; setRunning(); };
+    document.addEventListener('visibilitychange', onVis);
+    const io = new IntersectionObserver((entries) => {
+      onscreen = entries[0].isIntersecting;
+      setRunning();
+    }, { threshold: 0 });
+    io.observe(canvas);
+
     const onResize = () => {
       const nw = canvas.clientWidth, nh = canvas.clientHeight;
       if (!nw || !nh) return;
@@ -589,6 +605,8 @@ export function EdgeGlobe({ className = '', onStats }) {
       cancelAnimationFrame(raf);
       if (!coarse) window.removeEventListener('mousemove', onMove);
       window.removeEventListener('scroll', onScroll);
+      document.removeEventListener('visibilitychange', onVis);
+      io.disconnect();
       ro.disconnect();
       arcs.forEach(a => {
         a.geo.dispose();

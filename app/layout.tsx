@@ -5,6 +5,18 @@ import './brutalist.css';
 export const metadata: Metadata = {
   title: 'Nishit Rana — Software Engineer',
   description: 'Backend engineer building edge platforms and AI-driven workflows.',
+  openGraph: {
+    title: 'Nishit Rana — Software Engineer',
+    description: 'Backend engineer building edge platforms and AI-driven workflows.',
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Nishit Rana',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Nishit Rana — Software Engineer',
+    description: 'Backend engineer building edge platforms and AI-driven workflows.',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

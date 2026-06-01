@@ -189,7 +189,7 @@ export function Hero() {
             <a href="mailto:nrana4148@gmail.com" data-cursor="link" className="hero-btn hero-btn-primary">
               <span>GET IN TOUCH</span>
             </a>
-            <a href="/resume.pdf" download="Nishit_Rana_Resume.pdf" data-cursor="link" className="hero-btn">
+            <a href="/resume.pdf" download="resume.pdf" data-cursor="link" className="hero-btn">
               <span>↓ RESUME</span>
             </a>
             <a href="https://github.com/nrana-pixel" target="_blank" rel="noopener noreferrer" data-cursor="link" className="hero-btn">
