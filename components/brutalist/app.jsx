@@ -45,11 +45,8 @@ function BootSequence() {
   const reduced = useReduced();
 
   useEffect(() => {
-    // Play the loading-terminal intro once when the site is first opened in a
-    // session — NOT on internal navigation (e.g. returning home from agxp).
-    try {
-      if (sessionStorage.getItem('nr-boot-seen') === '1') { setPhase('done'); return; }
-    } catch (e) {}
+    // Play the loading-terminal intro on every page open (single-page site,
+    // so there's no internal navigation to skip it for). Honour reduced motion.
     if (reduced) { setPhase('done'); return; }
 
     setPhase('typing');
@@ -60,10 +57,7 @@ function BootSequence() {
     const typeNext = () => {
       if (idx >= BOOT_SEQ.length) {
         timers.push(setTimeout(() => setPhase('fading'), 320));
-        timers.push(setTimeout(() => {
-          setPhase('done');
-          try { sessionStorage.setItem('nr-boot-seen', '1'); } catch (e) {}
-        }, 950));
+        timers.push(setTimeout(() => setPhase('done'), 950));
         return;
       }
       const [line, speed, kind] = BOOT_SEQ[idx];

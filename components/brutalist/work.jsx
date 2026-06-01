@@ -27,6 +27,7 @@ const PROJECTS = [
   { n: 3, u: '', l: 'bot families' },
   { n: 12, u: 'kB', l: 'worker bundle' }],
 
+  detail: '/agxp',
   href: 'https://github.com/nrana-pixel/agxp-cloudflare',
   cta: 'READ CASE STUDY →'
 },
@@ -113,13 +114,14 @@ export function Projects() {
 
 }
 
-function WorkCard({ no, year, title, titleRed, codename, slotLabel, tech, summary, stats, href, cta, i }) {
+function WorkCard({ no, year, title, titleRed, codename, slotLabel, tech, summary, stats, href, cta, detail, i }) {
   const slotWrapRef = useRef(null);
   useClipReveal(slotWrapRef, { delay: 0.05 * i });
 
   const slotInner = (
     <div ref={slotWrapRef} className="work-card-slot-wrap">
       <SlotDistort no={no} label={slotLabel} codename={codename} />
+      {detail && <span className="work-card-slot-badge mono-s">CASE STUDY ↗</span>}
     </div>
   );
 
@@ -130,7 +132,11 @@ function WorkCard({ no, year, title, titleRed, codename, slotLabel, tech, summar
         <div className="work-card-year">[ {year} ]</div>
       </div>
 
-      {slotInner}
+      {detail ? (
+        <a href={detail} data-transition data-transition-label="AGXP / CASE STUDY" data-cursor="link" className="work-card-slot-link">
+          {slotInner}
+        </a>
+      ) : slotInner}
 
       <div className="work-card-meta">
         <h3 className="work-card-title">
@@ -152,7 +158,11 @@ function WorkCard({ no, year, title, titleRed, codename, slotLabel, tech, summar
             </div>
           )}
         </div>
-        {href ?
+        {detail ?
+        <a href={detail} data-transition data-transition-label="AGXP / CASE STUDY" data-cursor="link" className="work-card-cta">
+            {cta} <span aria-hidden="true">→</span>
+          </a> :
+        href ?
         <a href={href} target="_blank" rel="noopener noreferrer" data-cursor="link" className="work-card-cta">
             {cta} <span aria-hidden="true">→</span>
           </a> :

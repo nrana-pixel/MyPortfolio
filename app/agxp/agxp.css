@@ -1,0 +1,139 @@
+/* ============================================================
+   agxp.css — AGXP case study page (extends brutalist.css)
+============================================================ */
+body { background: var(--bg); }
+
+.cs-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px var(--pad-x);
+  border-bottom: 1px solid var(--hairline);
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.cs-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--fg);
+}
+.cs-back span:first-child { color: var(--red); transition: transform 280ms var(--ease-out); display: inline-block; }
+.cs-back:hover span:first-child { transform: translateX(-4px); }
+.cs-nav-title { color: var(--fg-3); }
+.cs-nav-repo { color: var(--fg-2); }
+.cs-nav-repo:hover { color: var(--red); }
+
+.cs { position: relative; z-index: 2; }
+
+/* hero */
+.cs-hero {
+  position: relative;
+  padding: clamp(140px, 20vh, 220px) var(--pad-x) clamp(60px, 8vh, 100px);
+  overflow: hidden;
+  border-bottom: 1px solid var(--hairline);
+}
+.cs-hero-ghost {
+  position: absolute; right: -2vw; top: 30%;
+  font-size: clamp(200px, 32vw, 520px); line-height: 0.8;
+  color: var(--bg-3); letter-spacing: -0.02em; pointer-events: none; z-index: 0;
+  mask-image: linear-gradient(180deg, var(--bg), transparent);
+  -webkit-mask-image: linear-gradient(180deg, var(--bg), transparent);
+}
+.cs-hero-inner { position: relative; z-index: 1; max-width: 1480px; margin: 0 auto; }
+.cs-hero-h1 {
+  font-size: clamp(72px, 13vw, 220px); line-height: 0.84; text-transform: uppercase;
+  letter-spacing: -0.005em; margin: 20px 0 0; color: var(--fg);
+}
+.cs-hero-h1 .line { display: block; }
+.cs-hero-h1 .line.red { color: var(--red); }
+.cs-hero-lede {
+  font-family: var(--font-body);
+  font-size: clamp(17px, 1.6vw, 24px); line-height: 1.5; color: var(--fg-2);
+  max-width: 60ch; margin-top: clamp(28px, 4vh, 48px);
+}
+.cs-hero-meta {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  margin-top: clamp(40px, 6vh, 72px);
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+}
+@media (max-width: 720px) { .cs-hero-meta { grid-template-columns: 1fr 1fr; } }
+.cs-meta-cell { background: var(--bg); padding: 18px 20px; display: grid; gap: 8px; }
+.cs-meta-k { color: var(--fg-3); letter-spacing: 0.18em; }
+.cs-meta-v { font-family: var(--font-mono); font-size: 12.5px; color: var(--fg); line-height: 1.4; }
+.cs-meta-v.red { color: var(--red); }
+
+/* content blocks */
+.cs-block {
+  padding: clamp(72px, 10vw, 140px) var(--pad-x);
+  border-bottom: 1px solid var(--hairline);
+}
+.cs-block-grid {
+  max-width: 1480px; margin: 0 auto;
+  display: grid; grid-template-columns: 200px 1fr; gap: clamp(32px, 5vw, 96px);
+}
+@media (max-width: 820px) { .cs-block-grid { grid-template-columns: 1fr; gap: 24px; } }
+.cs-block-label { display: flex; flex-direction: column; gap: 12px; align-content: start; position: sticky; top: 100px; align-self: start; }
+@media (max-width: 820px) { .cs-block-label { position: static; flex-direction: row; align-items: baseline; gap: 16px; } }
+.cs-block-no { font-size: clamp(48px, 6vw, 88px); line-height: 0.9; color: var(--red); }
+.cs-block-body { max-width: 70ch; }
+.cs-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.4vw, 64px); line-height: 1; text-transform: uppercase;
+  letter-spacing: -0.005em; color: var(--fg); margin-bottom: 28px;
+}
+.cs-h2 .red { color: var(--red); }
+.cs-p {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.3vw, 18px); line-height: 1.65; color: var(--fg-2);
+  margin-bottom: 18px;
+}
+.cs-p em { color: var(--fg); font-style: italic; }
+
+/* flow steps */
+.cs-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); margin-top: 12px; }
+@media (max-width: 620px) { .cs-steps { grid-template-columns: 1fr; } }
+.cs-step { background: var(--bg); padding: clamp(22px, 2.4vw, 34px); display: grid; gap: 12px; transition: background 320ms var(--ease-out); }
+.cs-step:hover { background: var(--bg-2); }
+.cs-step-no { font-size: 12px; color: var(--red); letter-spacing: 0.22em; }
+.cs-step-t { font-size: clamp(22px, 2.2vw, 30px); line-height: 1; text-transform: uppercase; color: var(--fg); }
+.cs-step-d { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.6; color: var(--fg-3); }
+
+/* code */
+.cs-code-wrap { border: 1px solid var(--hairline); background: var(--bg-2); }
+.cs-code-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--hairline); background: var(--bg-3); }
+.cs-code-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--fg-4); }
+.cs-code-dot:first-child { background: var(--red); }
+.cs-code {
+  font-family: var(--font-mono); font-size: 13px; line-height: 1.75; color: var(--fg-2);
+  padding: 24px 26px; white-space: pre; overflow-x: auto; margin: 0; letter-spacing: 0;
+}
+.cs-code .t-red { color: var(--red); }
+.cs-code .t-grn { color: #7CC68F; }
+.cs-code .t-yel { color: #E8C46B; }
+.cs-code .t-com { color: var(--fg-4); font-style: italic; }
+
+/* results */
+.cs-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2vw, 32px); margin-top: 12px; }
+@media (max-width: 620px) { .cs-stats { grid-template-columns: 1fr 1fr; } }
+.cs-stat { display: grid; gap: 8px; padding-top: 18px; border-top: 2px solid var(--red); }
+.cs-stat-n { font-size: clamp(48px, 6vw, 88px); line-height: 0.9; color: var(--fg); }
+.cs-stat-n .u { font-family: var(--font-mono); font-size: 0.3em; color: var(--fg-3); margin-left: 4px; letter-spacing: 0.06em; }
+.cs-stat-l { color: var(--fg-3); }
+
+/* next */
+.cs-next {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--hairline);
+}
+@media (max-width: 620px) { .cs-next { grid-template-columns: 1fr; } }
+.cs-next-link {
+  padding: clamp(48px, 8vw, 100px) var(--pad-x);
+  display: grid; gap: 12px; align-content: center;
+  transition: background 360ms var(--ease-out);
+}
+.cs-next-link:hover { background: var(--bg-2); }
+.cs-next-right { text-align: right; border-left: 1px solid var(--hairline); }
+@media (max-width: 620px) { .cs-next-right { border-left: 0; border-top: 1px solid var(--hairline); text-align: left; } }
+.cs-next-big { font-size: clamp(40px, 6vw, 88px); line-height: 0.9; text-transform: uppercase; color: var(--fg); }
+.cs-next-big.red { color: var(--red); }
