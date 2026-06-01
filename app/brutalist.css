@@ -2059,7 +2059,6 @@ main { position: relative; z-index: 2; }
 .pt-slats {
   position: absolute; inset: 0;
   display: grid; grid-template-columns: repeat(6, 1fr);
-  background: var(--red);
 }
 .pt-slat {
   background: var(--red);
