@@ -2,27 +2,22 @@
 
 /* ============================================================
    transition.jsx — red curtain page transition
-   - Intercepts clicks on [data-transition] links
-   - Plays a red panel wipe (slats), then navigates
-   - On a fresh page load, plays the reverse wipe (reveal)
+   - Starts REVEALED (no cover on load) so it never paints a
+     full-screen red overlay during SSR / before hydration.
+   - Intercepts clicks on [data-transition] links and plays a red
+     panel wipe (slats) before navigating to another page.
 ============================================================ */
 
 import { useEffect, useRef, useState } from "react";
 
 export function PageTransition() {
   const overlayRef = useRef(null);
-  // start covered on load so we can retract-reveal
-  const [cls, setCls] = useState('is-cover is-instant');
+  // Start revealed/transparent. The boot sequence is the load intro; this
+  // curtain only covers when navigating away via a [data-transition] link.
+  const [cls, setCls] = useState('');
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) { setCls(''); return; }
-
-    // Reveal: drop the instant flag, then retract the slats upward
-    let r1 = requestAnimationFrame(() => {
-      let r2 = requestAnimationFrame(() => setCls('is-reveal'));
-      overlayRef.current && (overlayRef.current._r2 = r2);
-    });
 
     const onClick = (e) => {
       const a = e.target.closest('a[data-transition]');
@@ -39,7 +34,7 @@ export function PageTransition() {
       setTimeout(() => { window.location.href = href; }, 760);
     };
     document.addEventListener('click', onClick);
-    return () => { cancelAnimationFrame(r1); document.removeEventListener('click', onClick); };
+    return () => { document.removeEventListener('click', onClick); };
   }, []);
 
   return (
