@@ -22,6 +22,9 @@ export function bootGsapLenis(lenisInstance) {
   const gsap = window.gsap;
   const ScrollTrigger = window.ScrollTrigger;
   gsap.registerPlugin(ScrollTrigger);
+  // Don't recalc pins when the mobile browser URL bar shows/hides — avoids
+  // pinned sections (manifesto, case study) jumping on scroll.
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   // Lenis tick -> ScrollTrigger update
   lenisInstance.on('scroll', ScrollTrigger.update);
@@ -92,6 +95,10 @@ export function useGSAPPin(sectionRef, trackRef, { count = 3, snap = true, gutte
     const ScrollTrigger = window.ScrollTrigger;
     if (!sectionRef.current || !trackRef.current) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // On phones the horizontal scroll-trap is replaced by a vertical stack
+    // (see the mobile rules in brutalist.css) — skip pinning entirely.
+    const mobile = window.matchMedia('(max-width: 760px)').matches;
+    if (mobile) return;
 
     const ctx = gsap.context(() => {
       const getDistance = () => {

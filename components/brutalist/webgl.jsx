@@ -284,6 +284,22 @@ export function SlotDistort({ no, label, codename, accent = 0xff0000 }) {
     };
     raf = requestAnimationFrame(tick);
 
+    // Pause the shader loop when the tab is hidden or the card is off-screen
+    // (saves GPU/battery, especially on mobile where 3 of these stack).
+    let visible = !document.hidden, onscreen = true;
+    const setRunning = () => {
+      const shouldRun = visible && onscreen;
+      if (shouldRun && !raf) raf = requestAnimationFrame(tick);
+      else if (!shouldRun && raf) { cancelAnimationFrame(raf); raf = 0; }
+    };
+    const onVis = () => { visible = !document.hidden; setRunning(); };
+    document.addEventListener('visibilitychange', onVis);
+    const io = new IntersectionObserver((entries) => {
+      onscreen = entries[0].isIntersecting;
+      setRunning();
+    }, { threshold: 0 });
+    io.observe(container);
+
     const onResize = () => {
       const nw = container.clientWidth, nh = container.clientHeight;
       if (!nw || !nh) return;
@@ -298,6 +314,8 @@ export function SlotDistort({ no, label, codename, accent = 0xff0000 }) {
       container.removeEventListener('mousemove', onMove);
       container.removeEventListener('mouseenter', onEnter);
       container.removeEventListener('mouseleave', onLeave);
+      document.removeEventListener('visibilitychange', onVis);
+      io.disconnect();
       ro.disconnect();
       renderer.dispose();
       mat.dispose();

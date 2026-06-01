@@ -2111,3 +2111,72 @@ main { position: relative; z-index: 2; }
   pointer-events: none;
 }
 .work-card-slot-link:hover .work-card-slot-badge { transform: translateY(0); opacity: 1; }
+
+/* ============================================================
+   MOBILE RESPONSIVE REFINEMENTS
+   Added on top of the original responsive rules: tighten the
+   biggest type so it never overflows narrow screens, and convert
+   the pinned horizontal "selected work" trap into a vertical stack.
+============================================================ */
+
+/* ---- Projects: stack vertically on phones (pin is disabled in JS) ---- */
+@media (max-width: 760px) {
+  .work-pin {
+    height: auto;
+    min-height: 0;
+    display: block;
+  }
+  .work-head { padding: clamp(64px, 14vw, 100px) var(--pad-x) 8px; }
+  .work-progress { display: none; }
+  .work-track-wrap { flex: none; overflow: visible; }
+  .work-track {
+    flex-direction: column;
+    transform: none !important;
+    height: auto;
+    padding: 0 var(--pad-x) clamp(56px, 12vw, 80px);
+    gap: clamp(48px, 12vw, 72px);
+  }
+  .work-card {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+  }
+  .work-card-slot-wrap { min-height: 220px; height: clamp(220px, 56vw, 300px); }
+}
+
+/* ---- Phone-sized type + spacing safety ---- */
+@media (max-width: 600px) {
+  :root { --pad-x: clamp(16px, 5vw, 28px); }
+
+  /* Hero: never let the display lockup overflow the viewport */
+  .hero { padding-top: clamp(104px, 16vh, 140px); }
+  .hero-h1 { font-size: clamp(58px, 18vw, 104px); }
+  .hero-tag { font-size: 11px; max-width: 100%; padding-left: 14px; }
+  .hero-btn { padding: 13px 16px; letter-spacing: 0.18em; }
+  .hero-status-row .lbl { min-width: 56px; }
+
+  /* Section + CTA headings */
+  .d-section { font-size: clamp(46px, 14vw, 96px); }
+  .cta-h1 { font-size: clamp(46px, 15vw, 104px); }
+  .cta-btn { padding: 16px 22px; }
+
+  /* Cards / grids breathing room */
+  .exp-card { padding: 24px 20px; }
+  .work-card-title { font-size: clamp(30px, 8vw, 44px); }
+  .work-card-stats { gap: 22px; }
+  .work-card-tech, .work-card .mono-l { max-width: 100%; }
+
+  /* Chapter dividers read cramped at full size on phones */
+  .chapter-no { font-size: clamp(30px, 9vw, 44px); }
+
+  /* GitHub terminal: scroll wide rows instead of clipping them */
+  .gh-term { border-radius: 6px; }
+}
+
+/* ---- Very small screens ---- */
+@media (max-width: 400px) {
+  .hero-h1 { font-size: clamp(46px, 16vw, 72px); }
+  .nav-mark { font-size: 22px; }
+  .nav-cta { padding: 7px 12px; letter-spacing: 0.16em; }
+  .work-card-stats { flex-wrap: wrap; gap: 16px 20px; }
+}
