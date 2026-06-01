@@ -326,6 +326,14 @@ export function GitHubStatus() {
   // Clear any pending typing timers only on unmount.
   useEffect(() => () => timersRef.current.forEach(clearTimeout), []);
 
+  // This terminal grows in height as it fetches live data and types out its
+  // lines — which pushes the pinned "Selected Work" section below it down.
+  // GSAP measured that pin earlier, so its scroll positions are now stale and
+  // the section jumps. Recalculate ScrollTrigger once the terminal settles.
+  useEffect(() => {
+    if (finished) window.ScrollTrigger?.refresh();
+  }, [finished]);
+
   // Drive the typing once data is ready AND the section is in view.
   useEffect(() => {
     if (startedRef.current) return;

@@ -14,7 +14,7 @@ import { SlotDistort } from "./webgl";
 const PROJECTS = [
 {
   no: '01',
-  year: '2025',
+  year: '2026',
   title: 'Cloudflare Edge',
   titleRed: 'Delivery Platform.',
   codename: 'AGXP',
@@ -33,7 +33,7 @@ const PROJECTS = [
 },
 {
   no: '02',
-  year: '2025',
+  year: '2026',
   title: 'Product → UGC',
   titleRed: 'AI Video Pipeline.',
   codename: 'VEO/UGC',

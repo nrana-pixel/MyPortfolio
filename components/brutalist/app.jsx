@@ -209,6 +209,11 @@ export default function App() {
     // After things settle, refresh ScrollTrigger so pins know their final dimensions
     const r1 = setTimeout(() => window.ScrollTrigger?.refresh(), 250);
     const r2 = setTimeout(() => window.ScrollTrigger?.refresh(), 1200);
+    // Fonts load asynchronously and reflow the whole page (display type is huge);
+    // the fixed timers above can lose the race, so refresh once fonts are ready.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => window.ScrollTrigger?.refresh());
+    }
 
     return () => {
       clearTimeout(r1); clearTimeout(r2);

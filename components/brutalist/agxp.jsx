@@ -75,7 +75,7 @@ function AgxpHero() {
     <section className="cs-hero">
       <div className="cs-hero-ghost font-display" aria-hidden="true">AGXP</div>
       <div className="cs-hero-inner">
-        <div className="eyebrow"><span className="red">● CASE STUDY</span><span className="dim" style={{ margin: '0 10px' }}>/</span><span style={{ color: 'var(--fg-3)' }}>2025</span></div>
+        <div className="eyebrow"><span className="red">● CASE STUDY</span><span className="dim" style={{ margin: '0 10px' }}>/</span><span style={{ color: 'var(--fg-3)' }}>2026</span></div>
         <h1 className="cs-hero-h1 font-display">
           <span className="line">
             <ScrambleText text="EDGE" delay={120} duration={800} inView={m} />

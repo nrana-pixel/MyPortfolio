@@ -13,6 +13,7 @@ const SFX = (() => {
   let ctx = null;
   let enabled = false;
   let master = null;
+  let music = null; // looping background-music <audio> element
 
   const ensure = () => {
     if (!ctx) {
@@ -26,6 +27,24 @@ const SFX = (() => {
     if (ctx.state === 'suspended') ctx.resume();
     return ctx;
   };
+
+  /* Background music — a looping <audio> element, lazily created.
+     Started/stopped by setEnabled so it shares the sound toggle's gesture
+     (browsers block autoplay until the user interacts). */
+  const ensureMusic = () => {
+    if (music) return music;
+    music = new Audio('/ambient.mp3');
+    music.loop = true;
+    music.volume = 0.25; // keep it ambient, well under the UI sfx
+    music.preload = 'none';
+    return music;
+  };
+  const startMusic = () => {
+    const m = ensureMusic();
+    const p = m.play();
+    if (p && p.catch) p.catch(() => {}); // ignore autoplay rejections
+  };
+  const stopMusic = () => { if (music) music.pause(); };
 
   const tone = ({ freq = 440, type = 'sine', dur = 0.08, gain = 0.5, slideTo = null, delay = 0 }) => {
     if (!enabled) return;
@@ -78,7 +97,7 @@ const SFX = (() => {
 
   return {
     play,
-    setEnabled(v) { enabled = v; if (v) ensure(); try { localStorage.setItem('sfx', v ? '1' : '0'); } catch (e) {} },
+    setEnabled(v) { enabled = v; if (v) { ensure(); startMusic(); } else { stopMusic(); } try { localStorage.setItem('sfx', v ? '1' : '0'); } catch (e) {} },
     isEnabled() { return enabled; },
     initFromStorage() {
       try { enabled = localStorage.getItem('sfx') === '1'; } catch (e) {}
