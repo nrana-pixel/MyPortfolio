@@ -1,0 +1,19 @@
+# Nishit Rana — Portfolio
+
+## About
+Nishit Rana is a backend software engineer specialising in edge platforms, distributed systems, and AI-driven workflows. Currently building with Go, TypeScript, Cloudflare Workers, and LLM tooling.
+
+## Work
+- **AGXP** — Edge request pipeline built on Cloudflare Workers. Handles auth, rate limiting, routing, and KV caching at the CDN edge. Case study available at /agxp.
+- Open source contributions and side projects visible on GitHub: https://github.com/nrana-pixel
+
+## Skills
+Go, TypeScript, Node.js, Python, Cloudflare Workers, Durable Objects, KV, R2, PostgreSQL, Redis, Docker, Kubernetes, LLM APIs (Anthropic, OpenAI), Retrieval-Augmented Generation (RAG).
+
+## Contact
+Email: nrana4148@gmail.com
+GitHub: https://github.com/nrana-pixel
+
+## Site structure
+- / — Main portfolio (hero, experience, skills, projects, education, contact)
+- /agxp — AGXP case study: anatomy of a single edge request

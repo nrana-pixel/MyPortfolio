@@ -1,13 +1,15 @@
 "use client";
 
 /* ============================================================
-   sound.jsx — WebAudio UI sound design + mute toggle
+   sound.jsx — WebAudio UI sound design + DJ panel toggle
    - Synth-generated (no asset files): tick, click, whoosh, boot
    - Default MUTED (sound is opt-in; autoplay is hostile)
    - Global window.sfx(type) so any component can trigger
+   - SoundToggle now opens DJPanel on click
 ============================================================ */
 
 import { useEffect, useState } from "react";
+import { DJPanel } from "./dj";
 
 const SFX = (() => {
   let ctx = null;
@@ -33,7 +35,7 @@ const SFX = (() => {
      (browsers block autoplay until the user interacts). */
   const ensureMusic = () => {
     if (music) return music;
-    music = new Audio('/ambient.mp3');
+    music = new Audio('/music/calling-out-your-name.mp3');
     music.loop = true;
     music.volume = 0.25; // keep it ambient, well under the UI sfx
     music.preload = 'none';
@@ -103,6 +105,15 @@ const SFX = (() => {
       try { enabled = localStorage.getItem('sfx') === '1'; } catch (e) {}
       return enabled;
     },
+    /* Expose AudioContext + master GainNode for the DJ panel.
+       Also stops the raw background-music element so the DJ panel's
+       MediaElementSourceNode becomes the sole audio output. */
+    getAudioForDJ() {
+      stopMusic();
+      const c = ensure();
+      if (!c) return null;
+      return { ctx: c, master };
+    },
   };
 })();
 
@@ -110,15 +121,16 @@ if (typeof window !== 'undefined') {
   window.sfx = (k) => SFX.play(k);
 }
 
-/* Toggle button — bottom-left, mirrors the Currently widget */
+/* Toggle button — bottom-left, opens the DJ panel */
 export function SoundToggle() {
   const [on, setOn] = useState(false);
+  const [djOpen, setDjOpen] = useState(false);
 
   useEffect(() => {
     setOn(SFX.initFromStorage());
   }, []);
 
-  // Global delegated UI sounds (only fire when enabled)
+  // Global delegated UI sounds (only fire when sound enabled)
   useEffect(() => {
     if (!on) return;
     const onOver = (e) => {
@@ -141,27 +153,39 @@ export function SoundToggle() {
     };
   }, [on]);
 
-  const toggle = () => {
-    const next = !on;
-    SFX.setEnabled(next);
-    setOn(next);
-    if (next) SFX.play('confirm');
+  const handleClick = () => {
+    const opening = !djOpen;
+    setDjOpen(opening);
+    if (opening && !on) {
+      // Enable WebAudio context (needed for the DJ chain) but skip the raw
+      // background-music playback — the DJ panel plays ambient.mp3 itself.
+      SFX.setEnabled(true);
+      SFX.getAudioForDJ(); // stops bg music, ensures ctx is awake
+      setOn(true);
+    }
   };
 
   return (
-    <button
-      className={`sfx-toggle ${on ? 'is-on' : ''}`}
-      onClick={toggle}
-      data-cursor="link"
-      aria-pressed={on}
-      aria-label={on ? 'Mute interface sounds' : 'Enable interface sounds'}
-      title={on ? 'Sound: ON' : 'Sound: OFF'}
-    >
-      <span className="sfx-bars" aria-hidden="true">
-        <span /><span /><span /><span />
-      </span>
-      <span className="sfx-label">{on ? 'SND·ON' : 'SND·OFF'}</span>
-    </button>
+    <>
+      <button
+        className={`sfx-toggle${on ? ' is-on' : ''}${djOpen ? ' dj-active' : ''}`}
+        onClick={handleClick}
+        data-cursor="link"
+        aria-pressed={djOpen}
+        aria-label={djOpen ? 'Close DJ panel' : 'Open DJ panel'}
+        title={djOpen ? 'Close DJ' : 'Open DJ'}
+      >
+        <span className="sfx-bars" aria-hidden="true">
+          <span /><span /><span /><span />
+        </span>
+        <span className="sfx-label">{djOpen ? 'DJ·NR' : (on ? 'SND·ON' : 'SND·OFF')}</span>
+      </button>
+      <DJPanel
+        open={djOpen}
+        onClose={() => setDjOpen(false)}
+        getAudio={() => SFX.getAudioForDJ()}
+      />
+    </>
   );
 }
 
