@@ -35,16 +35,20 @@ function VinylDisc({ label, playing, side, bpm, trackTitle, trackArtist, onScrat
   useEffect(() => {
     const el = discRef.current; if (!el) return;
     let active = false, startX = 0;
+    // Pointer events unify mouse + touch + pen so the scratch gesture works on
+    // phones/tablets too (the .dj-disc has touch-action:none so the page won't scroll).
     const down = (e) => { active = true; startX = e.clientX; onScratch('start', 0); e.preventDefault(); };
     const move = (e) => { if (!active) return; onScratch('move', e.clientX - startX); };
     const up   = () => { if (!active) return; active = false; onScratch('end', 0); };
-    el.addEventListener('mousedown', down);
-    window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', up);
+    el.addEventListener('pointerdown', down);
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
     return () => {
-      el.removeEventListener('mousedown', down);
-      window.removeEventListener('mousemove', move);
-      window.removeEventListener('mouseup', up);
+      el.removeEventListener('pointerdown', down);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
     };
   }, [onScratch]);
 
@@ -90,19 +94,23 @@ function Knob({ label, value, onChange }) {
   useEffect(() => {
     const el = elRef.current; if (!el) return;
     let active = false, startY = 0, startVal = 0;
+    // Pointer events so the knob can be dragged by touch as well as mouse
+    // (.dj-knob has touch-action:none so dragging it won't scroll the page).
     const down = (e) => { active = true; startY = e.clientY; startVal = live.current.value; e.preventDefault(); };
     const move = (e) => {
       if (!active) return;
       live.current.onChange(Math.min(100, Math.max(0, startVal + (startY - e.clientY))));
     };
     const up = () => { active = false; };
-    el.addEventListener('mousedown', down);
-    window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', up);
+    el.addEventListener('pointerdown', down);
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
     return () => {
-      el.removeEventListener('mousedown', down);
-      window.removeEventListener('mousemove', move);
-      window.removeEventListener('mouseup', up);
+      el.removeEventListener('pointerdown', down);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
     };
   }, []);
 

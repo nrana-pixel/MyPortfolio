@@ -1876,7 +1876,6 @@ main { position: relative; z-index: 2; }
   0%, 100% { height: 4px; }
   50% { height: 12px; }
 }
-@media (max-width: 600px) { .sfx-toggle { display: none; } }
 .sfx-toggle.dj-active { color: var(--fg); border-color: var(--red); }
 
 /* ============================================================
@@ -1997,6 +1996,7 @@ main { position: relative; z-index: 2; }
   box-shadow: 0 0 0 1px rgba(255,255,255,0.03), inset 0 2px 8px rgba(0,0,0,0.8);
   animation: djSpin var(--disc-dur, 1.94s) linear infinite;
   animation-play-state: paused;
+  touch-action: none; /* let pointer drag scratch instead of scrolling the page */
 }
 .dj-disc.is-playing { animation-play-state: running; }
 @keyframes djSpin { to { transform: rotate(360deg); } }
@@ -2083,6 +2083,7 @@ main { position: relative; z-index: 2; }
   border: 1px solid var(--hairline); background: var(--bg-2);
   position: relative; cursor: ns-resize; user-select: none;
   transition: border-color 160ms;
+  touch-action: none; /* let pointer drag turn the knob instead of scrolling */
 }
 .dj-knob:hover { border-color: var(--hairline-strong); }
 .dj-knob:active { border-color: var(--red); }
