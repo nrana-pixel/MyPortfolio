@@ -2158,9 +2158,6 @@ main { position: relative; z-index: 2; }
   animation: djDotPulse 200ms ease-in-out infinite;
 }
 
-/* Mobile: hide (sfx-toggle already hidden on mobile) */
-@media (max-width: 600px) { .dj-overlay { display: none; } }
-
 /* ============================================================
    GITHUB — live terminal (real api.github.com data)
 ============================================================ */
