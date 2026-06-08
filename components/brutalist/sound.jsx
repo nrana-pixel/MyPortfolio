@@ -175,24 +175,47 @@ export function SoundToggle() {
         aria-label={djOpen ? 'Close DJ panel' : 'Open DJ panel'}
         title={djOpen ? 'Close DJ' : 'Open DJ'}
       >
-        <span className="sfx-cassette" aria-hidden="true">
-          <svg viewBox="0 0 26 16" width="22" height="14" fill="none">
-            <rect x="0.6" y="0.6" width="24.8" height="14.8" rx="1.8"
-              stroke="currentColor" strokeWidth="1" />
-            <g className="sfx-reel">
-              <circle cx="8" cy="7" r="2.6" stroke="currentColor" strokeWidth="1" />
-              <circle cx="8" cy="7" r="0.7" fill="currentColor" />
-              <path d="M8 4.4V9.6M5.4 7H10.6" stroke="currentColor" strokeWidth="0.8" />
-            </g>
-            <g className="sfx-reel sfx-reel-b">
-              <circle cx="18" cy="7" r="2.6" stroke="currentColor" strokeWidth="1" />
-              <circle cx="18" cy="7" r="0.7" fill="currentColor" />
-              <path d="M18 4.4V9.6M15.4 7H20.6" stroke="currentColor" strokeWidth="0.8" />
-            </g>
-            <path d="M4.5 13H21.5" stroke="currentColor" strokeWidth="1" opacity="0.45" />
-          </svg>
+        <span className="cass" aria-hidden="true">
+          {/* Label sticker */}
+          <span className="cass-sticker">
+            <span className="cass-sticker-row">
+              <span className="cass-dot" />
+              <span className="cass-brand">DJ · NR</span>
+              <span className="cass-type">TYPE&nbsp;II</span>
+            </span>
+            <span className="cass-state">{djOpen ? 'DJ·NR' : (on ? 'SIDE·A' : 'MIXTAPE')}</span>
+          </span>
+
+          {/* Two reels with the tape running between them */}
+          <span className="cass-deck">
+            <span className="cass-reel cass-reel-a">
+              <svg viewBox="0 0 30 30">
+                <circle className="cass-ring" cx="15" cy="15" r="13" />
+                <circle className="cass-hub" cx="15" cy="15" r="7.5" />
+                <path className="cass-spokes"
+                  d="M15 7.5V22.5 M8.5 11.25L21.5 18.75 M8.5 18.75L21.5 11.25" />
+                <circle className="cass-pin" cx="15" cy="15" r="1.6" />
+              </svg>
+            </span>
+            <span className="cass-tape-line" />
+            <span className="cass-reel cass-reel-b">
+              <svg viewBox="0 0 30 30">
+                <circle className="cass-ring" cx="15" cy="15" r="13" />
+                <circle className="cass-hub" cx="15" cy="15" r="7.5" />
+                <path className="cass-spokes"
+                  d="M15 7.5V22.5 M8.5 11.25L21.5 18.75 M8.5 18.75L21.5 11.25" />
+                <circle className="cass-pin" cx="15" cy="15" r="1.6" />
+              </svg>
+            </span>
+          </span>
+
+          {/* Exposed tape window along the bottom edge */}
+          <span className="cass-base">
+            <span className="cass-notch" />
+            <span className="cass-window" />
+            <span className="cass-notch" />
+          </span>
         </span>
-        <span className="sfx-label">{djOpen ? 'DJ·NR' : (on ? 'SIDE·A' : 'MIXTAPE')}</span>
       </button>
       <DJPanel
         open={djOpen}

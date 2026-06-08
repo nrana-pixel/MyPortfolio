@@ -1843,39 +1843,105 @@ main { position: relative; z-index: 2; }
 /* ============================================================
    SOUND TOGGLE
 ============================================================ */
+/* ── The whole toggle IS a cassette tape ── */
 .sfx-toggle {
   position: fixed;
   left: clamp(16px, 2vw, 28px);
   bottom: clamp(16px, 2vw, 28px);
   z-index: 96;
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 9px 14px;
-  background: rgba(10, 10, 10, 0.82);
+  display: flex; flex-direction: column; gap: 6px;
+  width: 154px; height: 92px;
+  padding: 9px 10px;
+  box-sizing: border-box;
+  background:
+    linear-gradient(180deg, rgba(42,42,42,0.55), rgba(10,10,10,0.5)),
+    rgba(10, 10, 10, 0.82);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--hairline);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.45);
   font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--fg-3);
-  transition: color 240ms var(--ease-out), border-color 240ms var(--ease-out);
+  transition: color 240ms var(--ease-out), border-color 240ms var(--ease-out),
+              transform 240ms var(--ease-out);
 }
-.sfx-toggle:hover { color: var(--fg); border-color: var(--hairline-strong); }
+.sfx-toggle:hover { color: var(--fg); border-color: var(--hairline-strong); transform: translateY(-2px); }
 .sfx-toggle.is-on { color: var(--red); border-color: var(--red); }
-.sfx-cassette {
-  display: inline-flex; align-items: center;
-}
-.sfx-cassette svg { display: block; }
-/* Reels sit still when muted; spin once the tape is rolling. */
-.sfx-reel { transform-box: fill-box; transform-origin: center; }
-.sfx-toggle.is-on .sfx-reel,
-.sfx-toggle.dj-active .sfx-reel { animation: sfxReel 2.6s linear infinite; }
-/* Take-up reel drifts a touch slower for a mechanical, uneven feel. */
-.sfx-toggle.is-on .sfx-reel-b,
-.sfx-toggle.dj-active .sfx-reel-b { animation-duration: 3.6s; }
-@keyframes sfxReel {
-  to { transform: rotate(360deg); }
-}
 .sfx-toggle.dj-active { color: var(--fg); border-color: var(--red); }
+
+/* Label sticker */
+.cass { display: flex; flex-direction: column; gap: 6px; height: 100%; }
+.cass-sticker {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 4px 6px;
+  background: rgba(245, 245, 245, 0.05);
+  border: 1px solid var(--hairline);
+  border-top: 2px solid var(--red);
+  border-radius: 2px;
+}
+.cass-sticker-row {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 6.5px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--fg-3);
+}
+.cass-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+.cass-brand { color: var(--fg-2); }
+.cass-type { margin-left: auto; opacity: 0.7; }
+.cass-state {
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: currentColor;
+}
+
+/* Reel deck */
+.cass-deck {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.cass-reel { width: 28px; height: 28px; transform-origin: center; flex-shrink: 0; }
+.cass-reel svg { width: 100%; height: 100%; display: block; }
+.cass-ring { fill: rgba(255, 255, 255, 0.04); stroke: rgba(255, 255, 255, 0.13); stroke-width: 1; }
+.cass-hub { fill: #0d0d0d; stroke: var(--hairline-strong); stroke-width: 1; }
+.cass-spokes { stroke: currentColor; stroke-width: 1.1; opacity: 0.85; }
+.cass-pin { fill: currentColor; }
+
+/* Tape ribbon spanning the two reels */
+.cass-tape-line {
+  flex: 1; max-width: 50px; height: 3px; border-radius: 1px; opacity: 0.7;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.10) 0 1.5px, transparent 1.5px 5px),
+    #0d0d0d;
+  background-size: 5px 100%, auto;
+}
+
+/* Reels spin + tape scrolls only while audio is rolling */
+.sfx-toggle.is-on .cass-reel,
+.sfx-toggle.dj-active .cass-reel { animation: cassSpin 1.9s linear infinite; }
+.sfx-toggle.is-on .cass-reel-b,
+.sfx-toggle.dj-active .cass-reel-b { animation-duration: 2.7s; }
+@keyframes cassSpin { to { transform: rotate(360deg); } }
+
+.sfx-toggle.is-on .cass-tape-line,
+.sfx-toggle.dj-active .cass-tape-line,
+.sfx-toggle.is-on .cass-window,
+.sfx-toggle.dj-active .cass-window { animation: cassTape 0.45s linear infinite; }
+@keyframes cassTape { to { background-position: -5px 0, 0 0; } }
+
+/* Exposed-tape window along the bottom edge */
+.cass-base { display: flex; align-items: center; gap: 5px; height: 8px; }
+.cass-notch {
+  width: 8px; height: 5px; flex-shrink: 0; border-radius: 1px;
+  background: #0a0a0a; border: 1px solid var(--hairline);
+}
+.cass-window {
+  flex: 1; height: 7px; border-radius: 1px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1.5px, transparent 1.5px 5px),
+    linear-gradient(180deg, #161616, #0a0a0a);
+  background-size: 5px 100%, auto;
+}
 
 /* ============================================================
    DJ PANEL
@@ -1883,7 +1949,7 @@ main { position: relative; z-index: 2; }
 .dj-overlay {
   position: fixed;
   left: clamp(16px, 2vw, 28px);
-  bottom: calc(clamp(16px, 2vw, 28px) + 44px + 10px);
+  bottom: calc(clamp(16px, 2vw, 28px) + 92px + 12px);
   z-index: 500;
   width: clamp(340px, 92vw, 520px);
   background: var(--bg);
