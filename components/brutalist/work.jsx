@@ -330,7 +330,7 @@ export function Footer() {
       </div>
       <div className="ft-bot">
         <span className="ft-cp">© MMXXVI · NISHIT RANA · LUDHIANA / IN</span>
-        <span className="ft-stat"><span className="dot"></span>OPEN TO WORK · MAY 2026</span>
+        <span className="ft-stat"><span className="dot"></span>OPEN TO WORK</span>
       </div>
     </footer>);
 

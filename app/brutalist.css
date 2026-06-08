@@ -1943,6 +1943,54 @@ main { position: relative; z-index: 2; }
   background-size: 5px 100%, auto;
 }
 
+/* ── Mobile-only hide / show controls ──
+   Desktop never shows these (the cassette is small and out of the way);
+   on phones the user can tuck it away to read the text underneath. */
+.sfx-hide, .sfx-show { display: none; }
+
+@media (max-width: 760px) {
+  /* Small × pinned to the cassette's top-right corner */
+  .sfx-hide {
+    position: fixed; z-index: 97;
+    left: calc(clamp(16px, 2vw, 28px) + 154px - 11px);
+    bottom: calc(clamp(16px, 2vw, 28px) + 92px - 11px);
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px;
+    padding: 0; line-height: 1;
+    background: rgba(10, 10, 10, 0.92);
+    border: 1px solid var(--red); border-radius: 50%;
+    color: var(--fg); font-family: var(--font-mono); font-size: 13px;
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  }
+
+  /* When hidden, collapse the cassette so it takes no visual space */
+  .sfx-toggle.is-hidden { display: none; }
+
+  /* Compact re-show tab in the corner */
+  .sfx-show {
+    position: fixed; z-index: 96;
+    left: clamp(16px, 2vw, 28px);
+    bottom: clamp(16px, 2vw, 28px);
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 12px;
+    background: rgba(10, 10, 10, 0.82);
+    border: 1px solid var(--hairline-strong); border-radius: 6px;
+    color: var(--fg-3); font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  }
+  .sfx-show-ico {
+    width: 14px; height: 9px; border-radius: 1px;
+    border: 1px solid currentColor; position: relative; flex-shrink: 0;
+  }
+  .sfx-show-ico::before, .sfx-show-ico::after {
+    content: ''; position: absolute; top: 50%; width: 3px; height: 3px;
+    border-radius: 50%; border: 1px solid currentColor; transform: translateY(-50%);
+  }
+  .sfx-show-ico::before { left: 2px; }
+  .sfx-show-ico::after { right: 2px; }
+}
+
 /* ============================================================
    DJ PANEL
 ============================================================ */

@@ -15,7 +15,7 @@ const TECH = [
   'HONO', 'VERTEX AI', 'VEO 3.0', 'GEMINI', 'N8N', 'RAG', 'JWT', 'AES-GCM',
 ];
 const ALT = [
-  '[ AVAILABLE — MAY 2026 ]', '↗ MAIL', '↗ LINKEDIN', '↗ GITHUB',
+  '[ AVAILABLE ]', '↗ MAIL', '↗ LINKEDIN', '↗ GITHUB',
   '[ OPEN TO COLLAB ]', '[ REMOTE-READY ]', '[ LUDHIANA / IN ]',
 ];
 

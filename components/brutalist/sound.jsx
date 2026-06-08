@@ -125,6 +125,9 @@ if (typeof window !== 'undefined') {
 export function SoundToggle() {
   const [on, setOn] = useState(false);
   const [djOpen, setDjOpen] = useState(false);
+  // Mobile-only: let the user tuck the cassette away so it doesn't sit over
+  // the text. CSS keeps the hide/show controls hidden on desktop.
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     setOn(SFX.initFromStorage());
@@ -168,10 +171,11 @@ export function SoundToggle() {
   return (
     <>
       <button
-        className={`sfx-toggle${on ? ' is-on' : ''}${djOpen ? ' dj-active' : ''}`}
+        className={`sfx-toggle${on ? ' is-on' : ''}${djOpen ? ' dj-active' : ''}${hidden ? ' is-hidden' : ''}`}
         onClick={handleClick}
         data-cursor="link"
         aria-pressed={djOpen}
+        aria-hidden={hidden}
         aria-label={djOpen ? 'Close DJ panel' : 'Open DJ panel'}
         title={djOpen ? 'Close DJ' : 'Open DJ'}
       >
@@ -217,6 +221,32 @@ export function SoundToggle() {
           </span>
         </span>
       </button>
+
+      {/* Mobile-only hide control — tucks the cassette away to free the text */}
+      {!hidden && !djOpen && (
+        <button
+          className="sfx-hide"
+          onClick={() => setHidden(true)}
+          data-cursor="link"
+          aria-label="Hide the cassette player"
+          title="Hide"
+        >×</button>
+      )}
+
+      {/* Mobile-only re-show tab, appears once hidden */}
+      {hidden && (
+        <button
+          className="sfx-show"
+          onClick={() => setHidden(false)}
+          data-cursor="link"
+          aria-label="Show the cassette player"
+          title="Show player"
+        >
+          <span className="sfx-show-ico" aria-hidden="true" />
+          MIX
+        </button>
+      )}
+
       <DJPanel
         open={djOpen}
         onClose={() => setDjOpen(false)}
