@@ -27,9 +27,8 @@ const PROJECTS = [
   { n: 3, u: '', l: 'bot families' },
   { n: 12, u: 'kB', l: 'worker bundle' }],
 
-  detail: '/agxp',
   href: 'https://github.com/nrana-pixel/agxp-cloudflare',
-  cta: 'READ CASE STUDY →'
+  cta: 'VIEW ON GITHUB →'
 },
 {
   no: '02',
