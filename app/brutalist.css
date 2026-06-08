@@ -2331,6 +2331,20 @@ main { position: relative; z-index: 2; }
   .gh-stat:nth-child(1), .gh-stat:nth-child(2) { border-bottom: 1px solid var(--hairline); }
 }
 
+/* ---- DJ panel footer: stop the crossfader overflowing on phones ----
+   The 5 EQ/VOL/PITCH knobs + crossfader don't fit on one row at phone
+   widths, which pushed the crossfader slider past the panel's right edge.
+   Let the knob bank and the crossfader each take their own full-width row. */
+@media (max-width: 600px) {
+  .dj-foot { flex-wrap: wrap; gap: 14px 10px; }
+  .dj-eq {
+    flex: 1 1 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .dj-xfade { flex: 1 1 100%; min-width: 0; }
+}
+
 /* ============================================================
    PAGE TRANSITION — red curtain
 ============================================================ */
