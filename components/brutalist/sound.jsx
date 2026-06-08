@@ -175,10 +175,24 @@ export function SoundToggle() {
         aria-label={djOpen ? 'Close DJ panel' : 'Open DJ panel'}
         title={djOpen ? 'Close DJ' : 'Open DJ'}
       >
-        <span className="sfx-bars" aria-hidden="true">
-          <span /><span /><span /><span />
+        <span className="sfx-cassette" aria-hidden="true">
+          <svg viewBox="0 0 26 16" width="22" height="14" fill="none">
+            <rect x="0.6" y="0.6" width="24.8" height="14.8" rx="1.8"
+              stroke="currentColor" strokeWidth="1" />
+            <g className="sfx-reel">
+              <circle cx="8" cy="7" r="2.6" stroke="currentColor" strokeWidth="1" />
+              <circle cx="8" cy="7" r="0.7" fill="currentColor" />
+              <path d="M8 4.4V9.6M5.4 7H10.6" stroke="currentColor" strokeWidth="0.8" />
+            </g>
+            <g className="sfx-reel sfx-reel-b">
+              <circle cx="18" cy="7" r="2.6" stroke="currentColor" strokeWidth="1" />
+              <circle cx="18" cy="7" r="0.7" fill="currentColor" />
+              <path d="M18 4.4V9.6M15.4 7H20.6" stroke="currentColor" strokeWidth="0.8" />
+            </g>
+            <path d="M4.5 13H21.5" stroke="currentColor" strokeWidth="1" opacity="0.45" />
+          </svg>
         </span>
-        <span className="sfx-label">{djOpen ? 'DJ·NR' : (on ? 'SND·ON' : 'SND·OFF')}</span>
+        <span className="sfx-label">{djOpen ? 'DJ·NR' : (on ? 'SIDE·A' : 'MIXTAPE')}</span>
       </button>
       <DJPanel
         open={djOpen}

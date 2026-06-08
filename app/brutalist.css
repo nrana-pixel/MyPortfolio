@@ -1861,20 +1861,19 @@ main { position: relative; z-index: 2; }
 }
 .sfx-toggle:hover { color: var(--fg); border-color: var(--hairline-strong); }
 .sfx-toggle.is-on { color: var(--red); border-color: var(--red); }
-.sfx-bars {
-  display: inline-flex; align-items: flex-end; gap: 2px; height: 12px;
+.sfx-cassette {
+  display: inline-flex; align-items: center;
 }
-.sfx-bars span {
-  width: 2px; height: 4px; background: currentColor; opacity: 0.6;
-}
-.sfx-toggle.is-on .sfx-bars span { animation: sfxEq 0.9s var(--ease-in-out) infinite; }
-.sfx-toggle.is-on .sfx-bars span:nth-child(1) { animation-delay: 0s; }
-.sfx-toggle.is-on .sfx-bars span:nth-child(2) { animation-delay: 0.18s; }
-.sfx-toggle.is-on .sfx-bars span:nth-child(3) { animation-delay: 0.36s; }
-.sfx-toggle.is-on .sfx-bars span:nth-child(4) { animation-delay: 0.12s; }
-@keyframes sfxEq {
-  0%, 100% { height: 4px; }
-  50% { height: 12px; }
+.sfx-cassette svg { display: block; }
+/* Reels sit still when muted; spin once the tape is rolling. */
+.sfx-reel { transform-box: fill-box; transform-origin: center; }
+.sfx-toggle.is-on .sfx-reel,
+.sfx-toggle.dj-active .sfx-reel { animation: sfxReel 2.6s linear infinite; }
+/* Take-up reel drifts a touch slower for a mechanical, uneven feel. */
+.sfx-toggle.is-on .sfx-reel-b,
+.sfx-toggle.dj-active .sfx-reel-b { animation-duration: 3.6s; }
+@keyframes sfxReel {
+  to { transform: rotate(360deg); }
 }
 .sfx-toggle.dj-active { color: var(--fg); border-color: var(--red); }
 
