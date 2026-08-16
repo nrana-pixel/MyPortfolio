@@ -1,5 +1,9 @@
 "use client";
 
+/*
+   Gridline Velocity enhancement: existing hero content remains intact;
+   animated telemetry reads as useful system state, not decorative garnish.
+============================================================ */
 /* ============================================================
    BRUTALIST — Hero
    Mouse-reactive blob · parallax depth · letter stagger · cursor-tilt fig
@@ -10,6 +14,7 @@ import { clamp, lerp, useReduced, useCoarsePointer, useScrollY } from "./lib";
 import { LiveTime } from "./hooks";
 import { CodeReveal } from "./motion";
 import { EdgeGlobe } from "./webgl";
+import { HeroTelemetry } from "./telemetry";
 
 export function Hero() {
   const ref = useRef(null);
@@ -95,6 +100,9 @@ export function Hero() {
 
       {/* WebGL edge globe (Three.js) — wireframe globe + pulsing POPs + arc connections */}
       <EdgeGlobe onStats={setGlobeStats} />
+
+      {/* Motion + anime.js telemetry, layered independently from the WebGL canvas */}
+      <HeroTelemetry />
 
       {/* Vertical accent line */}
       <div className="hero-line" />

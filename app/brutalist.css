@@ -2522,6 +2522,55 @@ main { position: relative; z-index: 2; }
 .work-card-slot-link:hover .work-card-slot-badge { transform: translateY(0); opacity: 1; }
 
 /* ============================================================
+   GRIDLINE VELOCITY — Motion + anime.js telemetry additions
+   Small, purposeful layers that extend the current brutalist system.
+============================================================ */
+.scroll-telemetry {
+  position: fixed; z-index: 9200; left: 0; top: 0;
+  width: 100%; height: 3px; pointer-events: none;
+  background: rgba(245,245,245,0.12);
+}
+.scroll-telemetry-fill {
+  display: block; width: 100%; height: 100%;
+  transform-origin: left center; background: var(--red);
+  box-shadow: 0 0 18px rgba(255,0,0,0.42);
+}
+.scroll-telemetry-label {
+  position: absolute; top: 12px; right: var(--pad-x);
+  color: var(--fg-3); font-family: var(--font-mono); font-size: 8px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+}
+.hero-scan-rail {
+  position: absolute; z-index: 5; left: -12%; top: 31%;
+  width: min(52vw, 760px); height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--red) 16%, var(--red) 84%, transparent 100%);
+  box-shadow: 0 0 20px rgba(255,0,0,0.58);
+  pointer-events: none;
+}
+.hero-scan-rail::after {
+  content: 'ACQUIRE / 01'; position: absolute; right: 10%; top: -17px;
+  color: var(--red); font-family: var(--font-mono); font-size: 8px;
+  letter-spacing: 0.15em; white-space: nowrap;
+}
+.hero-signal {
+  position: absolute; z-index: 5; right: var(--pad-x); top: 132px;
+  display: grid; justify-items: end; gap: 7px; pointer-events: none;
+}
+.hero-signal-caption {
+  color: var(--fg-3); font-family: var(--font-mono); font-size: 8px;
+  letter-spacing: 0.16em;
+}
+.hero-signal-bars { display: flex; justify-content: end; align-items: end; gap: 3px; height: 18px; }
+.hero-signal-bar {
+  display: block; width: 13px; height: 6px; transform-origin: right center;
+  background: var(--red); opacity: 0.8;
+}
+.hero-signal-bar:nth-child(2) { height: 11px; }.hero-signal-bar:nth-child(3) { height: 7px; }
+.hero-signal-bar:nth-child(4) { height: 17px; }.hero-signal-bar:nth-child(5) { height: 9px; }
+.hero-signal-bar:nth-child(6) { height: 14px; }.hero-signal-bar:nth-child(7) { height: 5px; }
+.hero-signal-bar:nth-child(8) { height: 10px; }
+
+/* ============================================================
    MOBILE RESPONSIVE REFINEMENTS
    Added on top of the original responsive rules: tighten the
    biggest type so it never overflows narrow screens, and convert
@@ -2563,6 +2612,8 @@ main { position: relative; z-index: 2; }
   .hero-tag { font-size: 11px; max-width: 100%; padding-left: 14px; }
   .hero-btn { padding: 13px 16px; letter-spacing: 0.18em; }
   .hero-status-row .lbl { min-width: 56px; }
+  .scroll-telemetry-label, .hero-signal { display: none; }
+  .hero-scan-rail { top: 27%; width: 62vw; }
 
   /* Section + CTA headings */
   .d-section { font-size: clamp(46px, 14vw, 96px); }

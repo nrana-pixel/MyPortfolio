@@ -1,4 +1,5 @@
 "use client";
+"use client";
 
 /* ============================================================
    BRUTALIST — App + render + Lenis ↔ GSAP bridge
@@ -13,6 +14,7 @@ import { CrosshairCursor, Nav } from "./chrome";
 import { PageTransition } from "./transition";
 import { SoundToggle } from "./sound";
 import { KineticHeadings } from "./kinetic";
+import { ScrollTelemetry } from "./telemetry";
 import { Chapter } from "./chapter";
 import { Hero } from "./hero";
 import { Marquee, Experience, Skills } from "./mid";
@@ -228,6 +230,7 @@ export default function App() {
     <>
       <BootSequence />
       <PageTransition />
+      <ScrollTelemetry />
       <BlueprintGrid />
       <div className="grain" aria-hidden="true" />
       <CrosshairCursor />

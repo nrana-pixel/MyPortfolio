@@ -1,5 +1,6 @@
 "use client";
 
+/* Gridline Velocity: cinematic network visuals stay sparse, signal-led, and performance-capped. */
 /* ============================================================
    webgl.jsx — Three.js components (window.THREE UMD global)
    - EdgeNode      : hero background scene (wireframe icosahedron + orbiting cubes + particles)
@@ -414,6 +415,15 @@ export function EdgeGlobe({ className = '', onStats }) {
     const mer = new T.Mesh(ringGeo, ringMat);
     root.add(mer);
 
+    // Gridline Velocity: a slim orbital signal gives the globe a clearer
+    // directional rhythm without adding another scene or expensive geometry.
+    const orbitGeo = new T.TorusGeometry(R * 1.27, 0.006, 5, 128);
+    const orbitMat = new T.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.34 });
+    const orbit = new T.Mesh(orbitGeo, orbitMat);
+    orbit.rotation.x = 1.03;
+    orbit.rotation.y = -0.42;
+    root.add(orbit);
+
     // ---- POPs ----
     const popsGroup = new T.Group();
     root.add(popsGroup);
@@ -504,6 +514,8 @@ export function EdgeGlobe({ className = '', onStats }) {
       my += (tmy - my) * 0.04;
       root.rotation.y = t * 0.06 + mx * 0.9;
       root.rotation.x = 0.32 + my * 0.4 - Math.min(scrollAmt * 0.0002, 0.3);
+      orbit.rotation.z = -t * 0.16;
+      orbitMat.opacity = 0.2 + Math.sin(t * 1.1) * 0.11;
 
       // cursor position relative to canvas, for proximity glow
       const rect = canvas.getBoundingClientRect();
@@ -639,6 +651,7 @@ export function EdgeGlobe({ className = '', onStats }) {
       sphereGeo.dispose(); wireMat.dispose();
       solidGeo.dispose(); solidMat.dispose();
       ringGeo.dispose(); ringMat.dispose();
+      orbitGeo.dispose(); orbitMat.dispose();
       arcMat.dispose(); arcMatW.dispose(); arcEnd.dispose();
       renderer.dispose();
     };
