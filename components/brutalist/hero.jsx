@@ -83,17 +83,17 @@ export function Hero() {
       {/* MEGA word drifting horizontally behind everything */}
       <div className="hero-mega" aria-hidden="true">
         <div className="hero-mega-track" style={{ transform: `translate3d(${-py * 0.6}px, 0, 0)` }}>
+          <span className="hero-mega-word font-display">AGENTS</span>
+          <span className="hero-mega-sep">●</span>
           <span className="hero-mega-word font-display">BACKEND</span>
           <span className="hero-mega-sep">●</span>
-          <span className="hero-mega-word font-display">EDGE</span>
+          <span className="hero-mega-word font-display">INFRA</span>
           <span className="hero-mega-sep">●</span>
           <span className="hero-mega-word font-display">AI</span>
           <span className="hero-mega-sep">●</span>
-          <span className="hero-mega-word font-display">SCALE</span>
+          <span className="hero-mega-word font-display">AGENTS</span>
           <span className="hero-mega-sep">●</span>
           <span className="hero-mega-word font-display">BACKEND</span>
-          <span className="hero-mega-sep">●</span>
-          <span className="hero-mega-word font-display">EDGE</span>
           <span className="hero-mega-sep">●</span>
         </div>
       </div>
@@ -163,7 +163,7 @@ export function Hero() {
         <div className="hero-top">
           <div className="eyebrow">
             <span className="dot"></span>
-            <span className="red">[&nbsp;SOFTWARE&nbsp;ENGINEER&nbsp;]</span>
+            <span className="red">[&nbsp;FOUNDING&nbsp;ENGINEER&nbsp;]</span>
           </div>
           <div className="eyebrow">
             <span className="dim">SYSTEM.ONLINE</span>
@@ -188,9 +188,9 @@ export function Hero() {
           </h1>
 
           <p className={`hero-tag fade-up ${mounted ? 'is-in' : ''}`} style={{ transitionDelay: '1100ms' }}>
-            Backend engineer. I make services that respond before<br />
-            you finish reading the URL — and only wake me up when they
-            <br />actually mean it.
+            AI systems, backend &amp; infrastructure. I ship the whole{' '}<br />
+            stack alone — the agents, the Postgres and queues behind them,{' '}
+            <br />and the AWS servers they run on.
           </p>
 
           <div className={`hero-actions fade-up ${mounted ? 'is-in' : ''}`} style={{ transitionDelay: '1000ms' }}>
@@ -214,7 +214,7 @@ export function Hero() {
             </div>
             <div className="hero-status-row">
               <span className="lbl">REF</span>
-              <span className="val">NR—2026 / PORTFOLIO.V3</span>
+              <span className="val">NR—2026 / PORTFOLIO.V4</span>
             </div>
             <div className="hero-status-row">
               <span className="lbl">STATUS</span>

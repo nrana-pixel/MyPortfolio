@@ -22,7 +22,7 @@ const GH_USER = 'nrana-pixel';
 const GH_FALLBACK = {
   profile: {
     login: GH_USER, name: 'Nishit Rana',
-    bio: 'Backend engineer — edge platforms & AI-driven workflows.',
+    bio: 'Founding engineer — AI systems, backend & infrastructure.',
     location: 'India', public_repos: 27, followers: 48, following: 36,
     created_at: '2021-02-01T00:00:00Z',
   },
@@ -66,31 +66,20 @@ function useGitHub(user) {
 
     const finish = (data, source) => { if (!cancelled) setState({ ready: true, source, data }); };
 
-    const J = (u) => fetch(u, { headers: { Accept: 'application/vnd.github+json' } })
-      .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
-
     const safety = setTimeout(() => {
       finish(cached ? cached.data : GH_FALLBACK, 'cached');
     }, 7000);
 
-    Promise.allSettled([
-      J(`https://api.github.com/users/${user}`),
-      J(`https://api.github.com/users/${user}/repos?per_page=100&sort=pushed`),
-      J(`https://api.github.com/users/${user}/events/public?per_page=30`),
-      fetch(`https://github-contributions-api.jogruber.de/v4/${user}?y=last`)
-        .then((r) => (r.ok ? r.json() : null)).catch(() => null),
-    ]).then(([p, rp, ev, co]) => {
+    fetch('/api/github').then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((res) => {
       clearTimeout(safety);
       if (cancelled) return;
-      const okProfile = p.status === 'fulfilled' && p.value && !p.value.message;
-      if (okProfile) {
-        const freshContrib = co.status === 'fulfilled' && co.value && Array.isArray(co.value.contributions) ? co.value : null;
+      if (res && res.profile && res.profile.login) {
         const cachedContrib = cached && cached.data && cached.data.contrib ? cached.data.contrib : null;
         const data = {
-          profile: p.value,
-          repos: rp.status === 'fulfilled' && Array.isArray(rp.value) ? rp.value : [],
-          events: ev.status === 'fulfilled' && Array.isArray(ev.value) ? ev.value : [],
-          contrib: freshContrib || cachedContrib,
+          profile: res.profile,
+          repos: Array.isArray(res.repos) ? res.repos : [],
+          events: Array.isArray(res.events) ? res.events : [],
+          contrib: res.contrib || cachedContrib,
         };
         try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data })); } catch (e) {}
         finish(data, 'live');
@@ -128,7 +117,7 @@ function deriveGitHub(data) {
     if (e.type === 'PushEvent' && e.payload && Array.isArray(e.payload.commits)) {
       const repo = (e.repo && e.repo.name ? e.repo.name : '').split('/').pop();
       e.payload.commits.slice().reverse().forEach((c) => {
-        commits.push({ repo, msg: (c.message || '').split('\n')[0], when: e.created_at });
+        commits.push({ repo, msg: (c.message || '').split('\n')[0], when: e.created_at, sha: Math.random().toString(16).slice(2, 9) });
       });
     }
   });
@@ -252,7 +241,7 @@ function OutLog({ g }) {
     <div className="gh-log">
       {g.commits.map((c, i) => (
         <div className="gh-commit" key={i}>
-          <span className="gh-sha">{Math.random().toString(16).slice(2, 9)}</span>
+          <span className="gh-sha">{c.sha}</span>
           <span className="gh-commit-msg">{c.msg}</span>
           <span className="gh-commit-repo">{c.repo}</span>
           <span className="gh-when">{ghTimeAgo(c.when)}</span>
@@ -288,8 +277,6 @@ export function GitHubStatus() {
   const timersRef = useRef([]);
 
   const g = useMemo(() => (gh.data ? deriveGitHub(gh.data) : null), [gh.data]);
-  const gRef = useRef(null);
-  gRef.current = g;
 
   // Robust in-view trigger: check on mount, on scroll/wheel, and via rAF —
   // latch `nearby` the moment the section is anywhere near the viewport.
@@ -337,11 +324,11 @@ export function GitHubStatus() {
   // Drive the typing once data is ready AND the section is in view.
   useEffect(() => {
     if (startedRef.current) return;
-    if (!nearby || !gh.ready || !gRef.current) return;
+    if (!nearby || !gh.ready || !g) return;
     startedRef.current = true;
-    const steps = buildSteps(gRef.current);
+    const steps = buildSteps(g);
 
-    if (reduced) { setShown(steps); setFinished(true); return; }
+    if (reduced) { timersRef.current.push(setTimeout(() => { setShown(steps); setFinished(true); })); return; }
 
     let si = 0, ci = 0;
     const tick = () => {
@@ -359,7 +346,7 @@ export function GitHubStatus() {
       }
     };
     timersRef.current.push(setTimeout(tick, 260));
-  }, [nearby, gh.ready, reduced]);
+  }, [nearby, gh.ready, reduced, g]);
 
   const badge = gh.source === 'live'
     ? <span className="gh-badge is-live"><span className="gh-pip" />live · api.github.com</span>

@@ -286,9 +286,10 @@ export function DJPanel({ open, onClose, getAudio }) {
   }, []);
 
   /* ── Open / close ── */
+  const [wasOpen, setWasOpen] = useState(open);
+  if (wasOpen !== open) { setWasOpen(open); setPlaying(open); }
   useEffect(() => {
-    if (open) { setupChain(); setPlaying(true); }
-    else setPlaying(false);
+    if (open) setupChain();
   }, [open, setupChain]);
 
   /* ── Play / pause audio element ── */

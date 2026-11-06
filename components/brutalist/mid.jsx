@@ -10,9 +10,9 @@ import { Counter } from "./hooks";
 
 /* ---- Velocity-warped two-row tech marquee ---- */
 const TECH = [
-  'NODE.JS', 'PYTHON', 'TYPESCRIPT', 'CLOUDFLARE WORKERS', 'D1', 'KV', 'R2',
-  'DOCKER', 'KUBERNETES', 'NGINX', 'POSTGRES', 'MONGODB', 'REACT', 'NEXT.JS',
-  'HONO', 'VERTEX AI', 'VEO 3.0', 'GEMINI', 'N8N', 'RAG', 'JWT', 'AES-GCM',
+  'TYPESCRIPT', 'PYTHON', 'GO', 'PYDANTICAI', 'MCP', 'RAG', 'POSTGRES', 'BULLMQ',
+  'REDIS / VALKEY', 'AWS', 'EC2', 'RDS', 'CLOUDFORMATION', 'CLOUDFLARE WORKERS',
+  'HONO', 'NEXT.JS', 'VERTEX AI', 'VEO', 'GEMINI', 'RAZORPAY', 'N8N', 'SYSTEMD',
 ];
 const ALT = [
   '[ AVAILABLE ]', '↗ MAIL', '↗ LINKEDIN', '↗ GITHUB',
@@ -97,22 +97,23 @@ export function Experience() {
             <Reveal as="span" delay={120} style={{display:'block', color: 'var(--red)'}}>job, briefly.</Reveal>
           </h2>
           <Reveal as="p" delay={220} className="exp-cap">
-            One full-time engineering role at <span style={{color:'var(--fg)'}}>Cognerd</span>,
-            one production internship at <span style={{color:'var(--fg)'}}>Welzin</span>,
-            and a stubborn habit of drawing the data layer on a napkin before anyone has filed a Figma ticket.
+            Intern to <span style={{color:'var(--fg)'}}>founding engineer at Cognerd</span> within six months of
+            graduating, after a production internship at <span style={{color:'var(--fg)'}}>Welzin</span>.
+            I own planning, build, release and production support end to end, and supervise three interns.
           </Reveal>
         </div>
 
         <div className="exp-list">
           <ExpCard
-            title="Software Development Engineer I"
+            title="Founding Engineer (SDE 1)"
             org="Cognerd"
             meta="FEB 2026 — PRESENT"
-            stack="NODE.JS · TYPESCRIPT · PYTHON · CLOUD · AI WORKFLOWS"
+            stack="PYDANTICAI · TYPESCRIPT · PYTHON · POSTGRES · BULLMQ · AWS · RAZORPAY"
             bullets={[
-              "Backend development and scalable system design — building and maintaining services and APIs in Node.js, TypeScript, and Python.",
-              "Working with cloud infrastructure, deployments, and AI-powered workflows across the product surface.",
-              "Currently obsessed with: keeping p95 latency boring and observability honest.",
+              "Ownership: planning, build, release, deployment and production support across all company platforms; lead technical delivery and supervise three interns.",
+              "AI & agents: tool-using PydanticAI agents with retrieval budgets, citations, spend admission and sentence-level claim verification; golden datasets and regression gates for brand matching, sentiment and share-of-voice; an n8n + Vertex AI Veo product-to-video pipeline productised as a UGC video studio.",
+              "Backend & payments: 20+ REST routes and 10+ PostgreSQL tables; three durable PostgreSQL + BullMQ job systems with atomic admission and crash recovery; Razorpay billing with webhook de-duplication and reconciliation; multi-tenant RBAC.",
+              "Infrastructure: moved four production services and PostgreSQL onto EC2/RDS behind ALB, defined in CloudFormation with CodePipeline/CodeDeploy; CloudWatch + SNS alerting, ElastiCache Valkey with TLS, and a lower dev-infra bill.",
             ]}
           />
 
@@ -120,11 +121,11 @@ export function Experience() {
             title="Backend Developer Intern"
             org="Welzin"
             meta="AUG 2025 — JAN 2026"
-            stack="NODE.JS · PYTHON · DOCKER · K8S · MONGODB · NGINX · n8n · RAG"
+            stack="NODE.JS · PYTHON · MONGODB · RAG · n8n · NGINX · DOCKER · K8S"
             bullets={[
-              "Built scalable backend systems in Node.js and Python; developed and shipped production REST APIs.",
-              "Deployed and managed applications on Linux servers behind Nginx — set up the deployment pipeline that replaced the previous click-and-pray process.",
-              "Worked with n8n automation, Docker, Kubernetes, MongoDB, and a small RAG pipeline in a DevOps-oriented environment.",
+              "Built Node.js/Python APIs for brand monitoring: user-scoped brand profiles, persona-based generation, AEO reports and AI-provider comparison.",
+              "Integrated OpenRouter, OpenAI and Grok with MongoDB, RAG and n8n.",
+              "Deployed Linux applications behind Nginx, worked with Docker and Kubernetes, and moved a Flask service to Vercel.",
             ]}
           />
 
@@ -158,14 +159,14 @@ function ExpCard({ title, org, meta, stack, bullets }) {
    SKILLS — 4-col grid (paper bg), bracket hover, cascade reveal
 ============================================================ */
 const SKILLS = [
-  { no: '01', title: 'LANGUAGES',       items: 'C / C++ · Python · JavaScript · TypeScript · HTML · CSS' },
-  { no: '02', title: 'FRAMEWORKS',      items: 'Node.js · Express · Hono · Next.js · React · Vite · Django · EJS' },
-  { no: '03', title: 'DATABASES',       items: 'MongoDB · MySQL · Cloudflare D1 (SQLite)' },
-  { no: '04', title: 'CLOUD & INFRA',   items: 'CF Workers · KV · R2 · Linux · Nginx · Docker · Kubernetes' },
-  { no: '05', title: 'AI & AGENTIC',    items: 'RAG · MCP · GenAI · Agentic · n8n · Vertex AI · Gemini' },
-  { no: '06', title: 'SECURITY',        items: 'JWT · bcrypt · AES-GCM · SHA-256 · Web Crypto API' },
-  { no: '07', title: 'DEVELOPER TOOLS', items: 'Git · GitHub · VS Code · Postman · Wrangler · Vitest' },
-  { no: '08', title: 'CS FUNDAMENTALS', items: 'OOP · DSA · DBMS · Networks · Software Engineering' },
+  { no: '01', title: 'AI ENGINEERING',  items: 'PydanticAI · MCP · RAG · Vertex AI / Veo · Gemini · OpenAI · Anthropic · grounding · eval datasets & regression gates' },
+  { no: '02', title: 'LANGUAGES',       items: 'TypeScript · Python · Go · SQL' },
+  { no: '03', title: 'BACKEND',         items: 'Node.js · Express · Hono · FastAPI · Next.js · React · REST · SSE' },
+  { no: '04', title: 'DATA & QUEUES',   items: 'PostgreSQL · MongoDB/Atlas · MySQL · Cloudflare D1 · Qdrant · Redis/Valkey · BullMQ · n8n' },
+  { no: '05', title: 'AWS',             items: 'EC2 · RDS · ALB · ACM · S3 · CloudFront · ElastiCache · IAM · Secrets Manager · SSM · CloudWatch · SNS · CloudFormation · EventBridge · CodePipeline' },
+  { no: '06', title: 'EDGE & OPS',      items: 'Cloudflare Workers/KV/R2 · Linux · systemd · Nginx · Docker · Kubernetes · Tailscale · Vercel' },
+  { no: '07', title: 'AUTH & PAYMENTS', items: 'Better Auth · multi-tenant RBAC · Zod · Razorpay · idempotency keys · AES-256-GCM' },
+  { no: '08', title: 'TESTING & TOOLS', items: 'Vitest · Jest · pytest · Playwright · Git · Bash · PowerShell · Claude Code · Codex' },
 ];
 
 export function Skills() {
@@ -178,8 +179,8 @@ export function Skills() {
           <Reveal as="span" delay={120} style={{display:'block', color: 'var(--red)'}}>I trust.</Reveal>
         </h2>
         <Reveal as="p" delay={220} className="sk-lede">
-          Mostly TypeScript and Python, mostly at the edge, increasingly inside AI workflows. This isn&apos;t an
-          exhaustive resumé dump — it&apos;s what I actually open on a Monday morning.
+          Mostly TypeScript and Python: LLM agents and eval harnesses, the Postgres schemas and job queues
+          behind them, and the AWS servers they run on.
         </Reveal>
       </div>
 

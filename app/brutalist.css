@@ -2609,7 +2609,8 @@ main { position: relative; z-index: 2; }
   /* Hero: never let the display lockup overflow the viewport */
   .hero { padding-top: clamp(104px, 16vh, 140px); }
   .hero-h1 { font-size: clamp(58px, 18vw, 104px); }
-  .hero-tag { font-size: 11px; max-width: 100%; padding-left: 14px; }
+  .hero-tag { font-size: 11px; max-width: 100%; padding-left: 14px; box-sizing: border-box; }
+  .hero-tag br { display: none; }
   .hero-btn { padding: 13px 16px; letter-spacing: 0.18em; }
   .hero-status-row .lbl { min-width: 56px; }
   .scroll-telemetry-label, .hero-signal { display: none; }

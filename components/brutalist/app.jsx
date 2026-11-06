@@ -34,7 +34,7 @@ const BOOT_SEQ = [
   ['  → loading fonts ........................... ', 5,  ''],
   ['  → booting WebGL context ................... ', 5,  ''],
   ['  → opening edge connections (cf-workers) ... ', 5,  ''],
-  ['  → fetching projects (3) ................... ', 5,  ''],
+  ['  → fetching projects (4) ................... ', 5,  ''],
   ['  → warming KV cache ........................ ', 5,  ''],
   ['  → all systems nominal.',                          8,  ''],
   ['  → ready.',                                        14, 'final'],
@@ -49,9 +49,8 @@ function BootSequence() {
   useEffect(() => {
     // Play the loading-terminal intro on every page open (single-page site,
     // so there's no internal navigation to skip it for). Honour reduced motion.
-    if (reduced) { setPhase('done'); return; }
+    if (reduced) return;
 
-    setPhase('typing');
     const timers = [];
     let idx = 0;
     let charIdx = 0;
@@ -77,12 +76,12 @@ function BootSequence() {
       }
     };
 
-    timers.push(setTimeout(typeNext, 120));
+    timers.push(setTimeout(() => { setPhase('typing'); typeNext(); }, 120));
 
     return () => timers.forEach(clearTimeout);
   }, [reduced]);
 
-  if (phase === 'done') return null;
+  if (reduced || phase === 'done') return null;
 
   const totalLines = BOOT_SEQ.length;
   const pct = Math.min(100, Math.round((lines.length / totalLines) * 100));
@@ -123,13 +122,9 @@ function Currently() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    try {
-      if (sessionStorage.getItem('currently-dismissed') === '1') {
-        setDismissed(true);
-        return;
-      }
-    } catch (e) {}
-    const t = setTimeout(() => setMounted(true), 2200);
+    let gone = false;
+    try { gone = sessionStorage.getItem('currently-dismissed') === '1'; } catch (e) {}
+    const t = setTimeout(() => (gone ? setDismissed(true) : setMounted(true)), gone ? 0 : 2200);
     return () => clearTimeout(t);
   }, []);
 
@@ -240,7 +235,7 @@ export default function App() {
         <Marquee />
         <Chapter no="01" label="WHAT I DO" sub="MANIFESTO" />
         <Manifesto />
-        <Chapter no="02" label="THE DAY JOB" sub="EXPERIENCE · 2024 → NOW" />
+        <Chapter no="02" label="THE DAY JOB" sub="EXPERIENCE · 2025 → NOW" />
         <Experience />
         <Chapter no="03" label="STACK" sub="WHAT I REACH FOR FIRST" />
         <Skills />
@@ -248,7 +243,7 @@ export default function App() {
         <ArchSection />
         <Chapter no="05" label="GITHUB" sub="LIVE FROM GITHUB.COM" />
         <GitHubStatus />
-        <Chapter no="06" label="SELECTED WORK" sub="THREE THINGS I'VE SHIPPED" />
+        <Chapter no="06" label="SELECTED WORK" sub="FOUR THINGS I'VE SHIPPED" />
         <Projects />
         <Chapter no="07" label="THE PAPER TRAIL" sub="EDUCATION · ACHIEVEMENTS" />
         <EduAchievements />

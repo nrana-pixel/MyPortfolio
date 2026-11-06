@@ -5,13 +5,13 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import './brutalist.css';
 
 export const metadata: Metadata = {
-  title: 'Nishit Rana — Software Engineer',
-  description: 'Backend engineer building edge platforms and AI-driven workflows.',
+  title: 'Nishit Rana — Founding Engineer',
+  description: 'Founding engineer building LLM agents, backend systems and AWS infrastructure end to end.',
   metadataBase: new URL('https://nishitrana.me'),
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Nishit Rana — Software Engineer',
-    description: 'Backend engineer building edge platforms and AI-driven workflows.',
+    title: 'Nishit Rana — Founding Engineer',
+    description: 'Founding engineer building LLM agents, backend systems and AWS infrastructure end to end.',
     type: 'website',
     url: 'https://nishitrana.me',
     locale: 'en_US',
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'Nishit Rana — Software Engineer',
-    description: 'Backend engineer building edge platforms and AI-driven workflows.',
+    title: 'Nishit Rana — Founding Engineer',
+    description: 'Founding engineer building LLM agents, backend systems and AWS infrastructure end to end.',
   },
 };
 
@@ -30,10 +30,10 @@ const personSchema = {
   name: 'Nishit Rana',
   url: 'https://nishitrana.me',
   email: 'nrana4148@gmail.com',
-  jobTitle: 'Software Engineer',
-  description: 'Backend engineer building edge platforms and AI-driven workflows.',
-  knowsAbout: ['Go', 'TypeScript', 'Cloudflare Workers', 'Distributed Systems', 'AI workflows'],
-  sameAs: ['https://github.com/nrana-pixel'],
+  jobTitle: 'Founding Engineer',
+  description: 'Founding engineer building LLM agents, backend systems and AWS infrastructure end to end.',
+  knowsAbout: ['AI agents', 'PydanticAI', 'MCP', 'TypeScript', 'Python', 'PostgreSQL', 'AWS', 'Cloudflare Workers'],
+  sameAs: ['https://github.com/nrana-pixel', 'https://linkedin.com/in/NishitRana'],
 };
 
 // Unicode-escape <, >, & so the serialised JSON can never break out of a
@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Inter+Tight:wght@300;400;500;600&family=Caveat:wght@500;600;700&display=swap"
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         {children}
         <Analytics />
         <SpeedInsights />

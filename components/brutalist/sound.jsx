@@ -130,7 +130,8 @@ export function SoundToggle() {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    setOn(SFX.initFromStorage());
+    const t = setTimeout(() => setOn(SFX.initFromStorage()));
+    return () => clearTimeout(t);
   }, []);
 
   // Global delegated UI sounds (only fire when sound enabled)

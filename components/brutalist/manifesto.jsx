@@ -83,7 +83,7 @@ export function Manifesto() {
 
         {/* Eyebrow + chapter mark */}
         <div className="manifesto-head">
-          <div className="eyebrow"><span className="red">// MANIFESTO</span></div>
+          <div className="eyebrow"><span className="red">{'// MANIFESTO'}</span></div>
           <div className="manifesto-counter mono-s">
             <span style={{color:'var(--fg)'}}>{String(Math.min(visible, Math.floor(easedOut * visible))).padStart(2,'0')}</span>
             <span style={{color:'var(--fg-4)'}}> / {String(visible).padStart(2,'0')}</span>

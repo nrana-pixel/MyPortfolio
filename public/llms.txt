@@ -1,18 +1,29 @@
 # Nishit Rana — Portfolio
 
 ## About
-Nishit Rana is a backend software engineer specialising in edge platforms, distributed systems, and AI-driven workflows. Currently building with Go, TypeScript, Cloudflare Workers, and LLM tooling.
+Nishit Rana is a Founding Engineer (SDE 1) at Cognerd working across AI systems, backend and infrastructure. He builds LLM agents and eval harnesses, the PostgreSQL schemas and job queues behind them, the payment rails that monetise them, and the AWS servers they run on. He graduated in 2025, went from intern to founding engineer within six months, leads technical delivery and supervises three interns.
+
+## Experience
+- **Founding Engineer (SDE 1), Cognerd** (Feb 2026 – present): grounded PydanticAI agents with citations and claim verification; eval datasets and regression gates; 20+ REST APIs and 10+ PostgreSQL tables; three durable PostgreSQL + BullMQ job systems; Razorpay billing; multi-tenant RBAC; migration of four production services onto EC2/RDS defined in CloudFormation.
+- **Backend Developer Intern, Welzin** (Aug 2025 – Jan 2026): Node.js/Python brand-monitoring APIs with OpenRouter/OpenAI/Grok, MongoDB, RAG and n8n; Linux deployments behind Nginx.
 
 ## Work
-- **AGXP** — Edge request pipeline built on Cloudflare Workers. Handles auth, rate limiting, routing, and KV caching at the CDN edge. Case study available at /agxp.
-- Open source contributions and side projects visible on GitHub: https://github.com/nrana-pixel
+- **AGXP** — Cloudflare edge delivery for AI crawlers, built at Cognerd: serves LLM-transformed HTML variants from Workers/KV with origin fallback. Case study at /agxp. https://github.com/nrana-pixel/agxp-cloudflare
+- **AgentGraph** — agent observability and tool intelligence: trace/span ingestion, waterfall timelines, token/cost analytics, TypeScript and Python SDKs. https://github.com/nrana-pixel/AgentGraph
+- **Product → UGC video pipeline** — n8n + Vertex AI Veo, productised as a UGC video studio at Cognerd.
+- **Optimus CLI** — terminal AI coding assistant with an MCP client and Ollama/OpenAI-compatible streaming. https://github.com/nrana-pixel/optimus-cli
 
 ## Skills
-Go, TypeScript, Node.js, Python, Cloudflare Workers, Durable Objects, KV, R2, PostgreSQL, Redis, Docker, Kubernetes, LLM APIs (Anthropic, OpenAI), Retrieval-Augmented Generation (RAG).
+AI: PydanticAI, MCP, RAG, Vertex AI / Veo, Gemini, OpenAI, Anthropic, eval datasets and regression gates.
+Backend: TypeScript, Python, Go, SQL, Node.js, Express, Hono, FastAPI, Next.js, React.
+Data: PostgreSQL, MongoDB, MySQL, Cloudflare D1, Qdrant, Redis/Valkey, BullMQ.
+Infra: AWS (EC2, RDS, ALB, S3, CloudFront, ElastiCache, CloudFormation, CodePipeline), Cloudflare Workers/KV/R2, Linux, systemd, Nginx, Docker, Kubernetes.
 
 ## Contact
 Email: nrana4148@gmail.com
 GitHub: https://github.com/nrana-pixel
+LinkedIn: https://linkedin.com/in/NishitRana
+Résumé: /resume.pdf
 
 ## Site structure
 - / — Main portfolio (hero, experience, skills, projects, education, contact)

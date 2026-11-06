@@ -21,7 +21,7 @@ const PROJECTS = [
   slotLabel: 'EDGE WORKER · KV VARIANT MAP',
   slotBg: 'AGXP',
   tech: 'Hono · CF Workers · D1 · KV · R2 · React · Vite · Vitest · AES-GCM',
-  summary: 'Full-stack edge platform that deploys AI-optimized HTML variants on user-owned Cloudflare domains. Detects GPTBot, ClaudeBot, Perplexity at the edge and serves path-based KV variants — origin only sees real humans.',
+  summary: 'Proposed and built at Cognerd: an edge platform that serves LLM-transformed HTML variants to AI crawlers from Workers/KV with origin fallback. Detects GPTBot, ClaudeBot, Perplexity at the edge; automated Worker deployment, KV provisioning and routes; AES-256-GCM token encryption.',
   stats: [
   { n: 8, u: 'ms', l: 'detection p50' },
   { n: 3, u: '', l: 'bot families' },
@@ -33,13 +33,31 @@ const PROJECTS = [
 {
   no: '02',
   year: '2026',
+  title: 'Agent Observability',
+  titleRed: '& Tool Intelligence.',
+  codename: 'AGENTGRAPH',
+  slotLabel: 'TRACE · SPAN · WATERFALL',
+  slotBg: 'TRACE',
+  tech: 'TypeScript · Python · Next.js · PostgreSQL · Redis · OpenTelemetry',
+  summary: 'Trace and span ingestion with waterfall timelines and token/cost analytics. TypeScript and Python SDKs instrument OpenAI and Anthropic with async flushing, bounded retries and redaction. Trace-driven tool-swap recommendations, monthly spend caps, signed cost alerts, OTLP and S3 NDJSON export.',
+  stats: [
+  { n: 2, u: '', l: 'SDKs · TS + Python' },
+  { n: 2, u: '', l: 'LLM providers traced' },
+  { n: 2, u: '', l: 'exports · OTLP + S3' }],
+
+  href: 'https://github.com/nrana-pixel/AgentGraph',
+  cta: 'VIEW ON GITHUB'
+},
+{
+  no: '03',
+  year: '2026',
   title: 'Product → UGC',
   titleRed: 'AI Video Pipeline.',
   codename: 'VEO/UGC',
   slotLabel: '9:16 REEL · 5 LOCALES',
   slotBg: 'VEO',
   tech: 'n8n · Vertex AI · Veo 3.0 · Gemini 2.5 · Cloudflare R2 · MongoDB · React',
-  summary: 'End-to-end n8n pipeline. Webhook ingests a product image, Gemini Vision authors a UGC persona, three 8-second Veo 3.0 ads land in R2 — Hinglish, Punjabi, Tamil, Telugu, Marathi, each with region-specific dialogue.',
+  summary: 'Built at Cognerd and productised as a UGC video studio. A webhook ingests a product image, Gemini analyses it and writes structured prompts, Vertex AI Veo renders the ads with async polling and safety-block handling, and results land in R2 with backend callbacks, recovery, history and billing controls.',
   stats: [
   { n: 3, u: '', l: 'variants per run' },
   { n: 5, u: '', l: 'locales · 9:16' },
@@ -49,22 +67,21 @@ const PROJECTS = [
   cta: 'CASE STUDY · SOON'
 },
 {
-  no: '03',
-  year: '2024',
-  title: 'E-Commerce',
-  titleRed: 'Backend.',
-  codename: 'COMM',
-  slotLabel: 'API · RBAC · JWT',
-  slotBg: 'API',
-  tech: 'Node.js · Express · MongoDB · JWT · bcrypt',
-  summary: 'RESTful catalogue, cart, and order service with role-based access. Mongoose-modelled data, JWT middleware, the boring stuff done right.',
+  no: '04',
+  year: '2026',
+  title: 'Terminal AI',
+  titleRed: 'Coding Assistant.',
+  codename: 'OPTIMUS',
+  slotLabel: 'CLI · MCP · STREAMING',
+  slotBg: 'CLI',
+  tech: 'TypeScript · oclif · React/Ink · MCP · Ollama',
+  summary: 'A terminal coding assistant with its own MCP client (stdio transport, tool discovery and invocation), repository indexing, and streaming from Ollama or any OpenAI-compatible model.',
   stats: [
-  { n: 18, u: '', l: 'endpoints' },
-  { n: 3, u: '', l: 'roles · RBAC' },
-  { n: 94, u: '%', l: 'test coverage' }],
+  { n: 2, u: '', l: 'model backends' },
+  { n: 1, u: '', l: 'MCP client · stdio' }],
 
-  href: null,
-  cta: 'WRITE-UP · SOON'
+  href: 'https://github.com/nrana-pixel/optimus-cli',
+  cta: 'VIEW ON GITHUB'
 }];
 
 
@@ -93,7 +110,7 @@ export function Projects() {
               <Reveal as="span" delay={120} style={{ display: 'block', color: 'var(--red)' }}>work.</Reveal>
             </h2>
             <Reveal as="p" delay={220} className="body-l" style={{ maxWidth: '52ch' }}>
-              Three shipped systems. Scroll keeps moving — the gallery slides sideways while the page holds steady, then locks onto whichever one you stop at.
+              Four shipped systems. Scroll keeps moving — the gallery slides sideways while the page holds steady, then locks onto whichever one you stop at.
             </Reveal>
           </div>
           <div className="work-progress" aria-live="polite">
@@ -193,20 +210,21 @@ export function EduAchievements() {
           </h3>
         </div>
         <div className="edu-items">
-          <EduItem title="Bachelor of Computer Application" meta="2022 — 2025" sub="Arya College, Ludhiana, Punjab" />
+          <EduItem title="Bachelor of Computer Applications" meta="2022 — 2025" sub="Arya College, Ludhiana, Punjab" />
           <EduItem title="Class 10th & 12th" meta="2020 — 2022" sub="Amrit Indo Canadian Academy, Ludhiana, Punjab" />
         </div>
       </div>
 
       <div className="edu-side">
         <div className="edu-head">
-          <Reveal as="div" className="eyebrow"><span className="red">[ Things I&apos;ve won ]</span></Reveal>
+          <Reveal as="div" className="eyebrow"><span className="red">[ Talks &amp; prizes ]</span></Reveal>
           <h3 className="edu-h3">
             <Reveal as="span" style={{ display: 'block' }}>A few</Reveal>
             <Reveal as="span" delay={120} style={{ display: 'block', color: 'var(--red)' }}>plaques.</Reveal>
           </h3>
         </div>
         <div className="ach-items">
+          <AchItem prize="SPEAKER" event="“kagent for beginners” · live demo" venue="Cloud Native Community Group" year="2026" />
           <AchItem prize="FIRST PRIZE" event="Swift Surfer · Technothan" venue="Guru Nanak Khalsa College" year="2022" />
           <AchItem prize="THIRD PRIZE" event="Web Surfing · Tech Disha" venue="Arya College, Ludhiana" year="2023" />
           <AchItem prize="THIRD PRIZE" event="Web Surfing · Tech Disha" venue="Arya College, Ludhiana" year="2024" />
@@ -271,8 +289,8 @@ export function CTA() {
           </span>
         </h2>
         <Reveal as="p" delay={300} className="cta-lede">
-          Backend infrastructure, AI agentic pipelines, edge experiments — or just a long email about
-          databases. Both welcome. Replies within 24h, usually within 4.
+          AI agents, backend systems, AWS infrastructure — or just a long email about
+          databases. All welcome. Replies within 24h, usually within 4.
         </Reveal>
         <div className="cta-buttons">
           <a ref={mailRef} href="mailto:nrana4148@gmail.com" data-cursor="link" className="cta-btn cta-btn-primary">
@@ -307,7 +325,7 @@ export function Footer() {
       <div className="ft-grid">
         <div>
           <div className="ft-sig">NISHIT <span className="red">RANA.</span></div>
-          <div className="ft-tag">Backend · Edge · AI ·  Portfolio v.03</div>
+          <div className="ft-tag">AI · Backend · Infra · Portfolio v.04</div>
         </div>
         <div>
           <div className="ft-col-h">LINKS</div>
@@ -320,6 +338,7 @@ export function Footer() {
           <div className="ft-col-h">SOCIAL</div>
           <a href="https://github.com/nrana-pixel" target="_blank" rel="noopener noreferrer" data-cursor="link" className="ft-col-link">GitHub ↗</a>
           <a href="https://linkedin.com/in/NishitRana" target="_blank" rel="noopener noreferrer" data-cursor="link" className="ft-col-link">LinkedIn ↗</a>
+          <a href="/resume.pdf" download="resume.pdf" data-cursor="link" className="ft-col-link">Résumé ↓</a>
         </div>
         <div>
           <div className="ft-col-h">CONTACT</div>

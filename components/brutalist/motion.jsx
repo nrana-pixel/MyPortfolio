@@ -169,7 +169,7 @@ export function CodeReveal({ text, delay = 0, perChar = 85, hexHold = 240, inVie
   const [states, setStates] = useState(() => chars.map(() => 0));
 
   useEffect(() => {
-    if (!inView) { setStates(chars.map(() => 0)); return; }
+    if (!inView) return;
     const timers = [];
     chars.forEach((c, i) => {
       if (c === ' ') return;
@@ -177,7 +177,7 @@ export function CodeReveal({ text, delay = 0, perChar = 85, hexHold = 240, inVie
       timers.push(setTimeout(() => setStates(p => { const n = p.slice(); n[i] = 1; return n; }), startAt));
       timers.push(setTimeout(() => setStates(p => { const n = p.slice(); n[i] = 2; return n; }), startAt + hexHold));
     });
-    return () => timers.forEach(clearTimeout);
+    return () => { timers.forEach(clearTimeout); setStates(chars.map(() => 0)); };
   }, [inView, chars, delay, perChar, hexHold]);
 
   return (
