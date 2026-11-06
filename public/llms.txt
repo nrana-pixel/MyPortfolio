@@ -8,7 +8,7 @@ Nishit Rana is a Founding Engineer (SDE 1) at Cognerd working across AI systems,
 - **Backend Developer Intern, Welzin** (Aug 2025 – Jan 2026): Node.js/Python brand-monitoring APIs with OpenRouter/OpenAI/Grok, MongoDB, RAG and n8n; Linux deployments behind Nginx.
 
 ## Work
-- **AGXP** — Cloudflare edge delivery for AI crawlers, built at Cognerd: serves LLM-transformed HTML variants from Workers/KV with origin fallback. Case study at /agxp. https://github.com/nrana-pixel/agxp-cloudflare
+- **AGXP** — Cloudflare edge delivery for AI crawlers, built at Cognerd: serves LLM-transformed HTML variants from Workers/KV with origin fallback. Repository private.
 - **AgentGraph** — agent observability and tool intelligence: trace/span ingestion, waterfall timelines, token/cost analytics, TypeScript and Python SDKs. https://github.com/nrana-pixel/AgentGraph
 - **Product → UGC video pipeline** — n8n + Vertex AI Veo, productised as a UGC video studio at Cognerd.
 - **Optimus CLI** — terminal AI coding assistant with an MCP client and Ollama/OpenAI-compatible streaming. https://github.com/nrana-pixel/optimus-cli
@@ -27,4 +27,3 @@ Résumé: /resume.pdf
 
 ## Site structure
 - / — Main portfolio (hero, experience, skills, projects, education, contact)
-- /agxp — AGXP case study: anatomy of a single edge request

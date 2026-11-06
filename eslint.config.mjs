@@ -11,7 +11,4 @@ export default defineConfig([{
 }, {
     files: ["app/layout.tsx"],
     rules: { "@next/next/no-page-custom-font": "off" },
-}, {
-    files: ["components/brutalist/agxp.jsx"],
-    rules: { "@next/next/no-html-link-for-pages": "off" },
 }]);

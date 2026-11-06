@@ -114,9 +114,7 @@ export function ArchSection() {
               </div>
               <div className="arch-meta-row">
                 <span className="mono-s" style={{color:'var(--fg-3)'}}>REPO</span>
-                <a href="https://github.com/nrana-pixel/agxp-cloudflare"
-                   target="_blank" rel="noopener noreferrer"
-                   data-cursor="link" className="mono u-draw">github.com/nrana-pixel/agxp ↗</a>
+                <span className="mono">private · built at Cognerd</span>
               </div>
             </div>
           </div>
